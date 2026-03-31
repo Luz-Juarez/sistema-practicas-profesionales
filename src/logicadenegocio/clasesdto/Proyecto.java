@@ -1,0 +1,92 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package logicadenegocio.clasesdto;
+
+/**
+ *
+ * @author Luz Fernanda H J
+ */
+public class Proyecto {
+    private Integer idProyecto; 
+    private String nombre; 
+    private String descripcion;
+    private String nombreResponsable;
+    private Integer cupoMaximo;
+    private boolean esActivo;
+    private Organizacion Organizacion;
+    //Calendarización decidimos que será parte de Documento
+
+    public Proyecto (){
+    }
+    
+    public Proyecto(Integer idProyecto, String nombre, String descripcion, String nombreResponsable, Integer cupoMaximo, boolean esActivo, Organizacion Organizacion) {
+        this.idProyecto = idProyecto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.nombreResponsable = nombreResponsable;
+        this.cupoMaximo = cupoMaximo;
+        this.esActivo = esActivo;
+        this.Organizacion = Organizacion;
+    }
+
+    public Integer getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(Integer idProyecto) {
+        this.idProyecto = idProyecto;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getNombreResponsable() {
+        return nombreResponsable;
+    }
+
+    public void setNombreResponsable(String nombreResponsable) {
+        this.nombreResponsable = nombreResponsable;
+    }
+
+    public Integer getCupoMaximo() {
+        return cupoMaximo;
+    }
+
+    public void setCupoMaximo(Integer cupoMaximo) {
+        this.cupoMaximo = cupoMaximo;
+    }
+
+    public boolean esActivo() {
+        return esActivo;
+    }
+
+    public void setIsActivo(boolean esActivo) {
+        this.esActivo = esActivo;
+    }
+
+    public Organizacion getOrganizacion() {
+        return Organizacion;
+    }
+
+    public void setOrganizacion(Organizacion Organizacion) {
+        this.Organizacion = Organizacion;
+    }
+    
+    
+    
+}
