@@ -6,8 +6,8 @@ package logicadenegocio.clasesdao;
 
 /**
  *
- * @author Luz Fernanda H J
+ * @author gomes
  */
-public class DocumentosDAO {
+public class MensajeDAO {
     
 }
