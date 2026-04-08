@@ -21,14 +21,10 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
     @Override
     public boolean registrarPracticante(Practicante practicante){
         boolean resultado = false;
-        try {
-
-            Connection conexion = ConexionBD.conectar();
-
-            String consultaSQL = """
+        String consultaSQL = """
                 INSERT INTO PRACTICANTE (idUsuario, matricula, genero, lenguaIndigena, fechaNacimiento) VALUES (?, ?)""";
-
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
+        try (Connection conexion = ConexionBD.getConnection();
+             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
 
             preparedStatement.setInt(1, practicante.getIdUsuario());
             preparedStatement.setString(2, practicante.getMatricula());
@@ -43,11 +39,7 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             
             resultado = true;
 
-            conexion.close();
-            preparedStatement.close();
-
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultado;
@@ -57,11 +49,10 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
     public Practicante consultarPracticante(String matricula) {
 
         Practicante practicante = null;
-
-        try {
-            Connection conexion = ConexionBD.conectar();
-            String consultaSQL = "SELECT idUsuario, matricula FROM PRACTICANTE WHERE matricula = ?";
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
+        String consultaSQL = "SELECT idUsuario, matricula FROM PRACTICANTE WHERE matricula = ?";
+        try(Connection conexion = ConexionBD.getConnection();
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+            
             preparedStatement.setString(1, matricula);
 
             ResultSet results = preparedStatement.executeQuery();
@@ -75,9 +66,7 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
 
             }
 
-            conexion.close();
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

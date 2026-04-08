@@ -45,11 +45,11 @@ public class OrganizacionDAO implements IOrganizacionDAO{
     public Organizacion consultarOrganizacion(int idOrganizacion) {
 
         Organizacion organizacion = null;
-
-        try {
-            Connection conexion = ConexionBD.conectar();
-            String consultaSQL = "SELECT * FROM ORGANIZACION WHERE idOrganizacion = ?";
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
+        String consultaSQL = "SELECT * FROM ORGANIZACION WHERE idOrganizacion = ?";
+        
+        try (Connection conexion = ConexionBD.getConnection();
+             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);){
+            
             preparedStatement.setInt(1, idOrganizacion);
 
             ResultSet results = preparedStatement.executeQuery();
@@ -72,9 +72,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
 
             }
 
-            conexion.close();
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

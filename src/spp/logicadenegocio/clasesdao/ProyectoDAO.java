@@ -23,14 +23,13 @@ public class ProyectoDAO implements IProyectoDAO {
     @Override
     public boolean registrarProyecto(Proyecto proyecto){
         boolean resultado = false;
-        try {
+        String consultaSQL = """
+                INSERT INTO PROYECTO 
+                (nombre, descripcion, nombreResponsable, cupoMaximo, estado, 
+                  Organizacion_idOrganizacion) VALUES (?, ?, ?, ?, ?, ?)""";
+        try(Connection conexion = ConexionBD.getConnection();
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
 
-            Connection conexion = ConexionBD.conectar();
-
-            String consultaSQL = """
-                INSERT INTO PROYECTO (nombre, descripcion, nombreResponsable, cupoMaximo, estado, Organizacion_idOrganizacion) VALUES (?, ?, ?, ?, ?, ?)""";
-
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
             preparedStatement.setInt(1, proyecto.getIdProyecto());
             preparedStatement.setString(2, proyecto.getDescripcion());
             preparedStatement.setString(3, proyecto.getNombreResponsable());
@@ -42,11 +41,7 @@ public class ProyectoDAO implements IProyectoDAO {
             
             resultado = true;
 
-            conexion.close();
-            preparedStatement.close();
-
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultado;
@@ -55,11 +50,11 @@ public class ProyectoDAO implements IProyectoDAO {
     @Override
     public Proyecto consultarProyecto(int idProyecto) {
         Proyecto proyecto = null;
+         String consultaSQL = "SELECT * FROM PROYECTO WHERE idProyecto = ?";
 
-        try {
-            Connection conexion = ConexionBD.conectar();
-            String consultaSQL = "SELECT * FROM PROYECTO WHERE idProyecto = ?";
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
+        try(Connection conexion = ConexionBD.getConnection();
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+          
             preparedStatement.setInt(1, idProyecto);
 
             ResultSet results = preparedStatement.executeQuery();
@@ -86,7 +81,7 @@ public class ProyectoDAO implements IProyectoDAO {
 
             conexion.close();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

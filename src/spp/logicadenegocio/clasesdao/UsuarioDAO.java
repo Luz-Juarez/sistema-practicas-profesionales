@@ -22,14 +22,10 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public int registrarUsuario(Usuario usuario){
         boolean resultado = false;
-        try {
-
-            Connection conexion = ConexionBD.conectar();
-
-            String consultaSQL = """
+        String consultaSQL = """
                 INSERT INTO USUARIO (nombre, apellidos, contrasena, estado) VALUES (?, ?, ?, ?)""";
-
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL,Statement.RETURN_GENERATED_KEYS);
+        try(Connection conexion = ConexionBD.getConnection();
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL,Statement.RETURN_GENERATED_KEYS);) {
 
             preparedStatement.setString(1, usuario.getNombre());
             preparedStatement.setString(2, usuario.getApellidos());
@@ -46,13 +42,9 @@ public class UsuarioDAO implements IUsuarioDAO {
             }
 
             resultado = true;
-
-            conexion.close();
             results.close();
-            preparedStatement.close();
 
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         if(resultado){
@@ -66,11 +58,11 @@ public class UsuarioDAO implements IUsuarioDAO {
     public Usuario consultarUsuario(int idUsuario) {
 
         Usuario usuario = null;
+        String consultaSQL = "SELECT idUsuario, nombre, apellidos, estado FROM USUARIO WHERE idUsuario = ?";
 
-        try {
-            Connection conexion = ConexionBD.conectar();
-            String consultaSQL = "SELECT idUsuario, nombre, apellidos, estado FROM USUARIO WHERE idUsuario = ?";
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
+        try(Connection conexion = ConexionBD.getConnection();
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+            
             preparedStatement.setInt(1, idUsuario);
 
             ResultSet results = preparedStatement.executeQuery();
@@ -91,9 +83,8 @@ public class UsuarioDAO implements IUsuarioDAO {
                 }
 
             } 
-            conexion.close();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

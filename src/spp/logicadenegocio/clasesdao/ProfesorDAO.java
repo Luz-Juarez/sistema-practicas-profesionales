@@ -21,26 +21,19 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
     @Override
     public boolean registrarProfesor(Profesor profesor){
         boolean resultado = false;
-        try {
-
-            Connection conexion = ConexionBD.conectar();
-
-            String consultaSQL = """
+        String consultaSQL = """
                 INSERT INTO PROFESOR (idUsuario, noPersonal) VALUES (?, ?)""";
+        try(Connection conexion = ConexionBD.getConnection();
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
 
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
             preparedStatement.setInt(1, profesor.getIdUsuario());
             preparedStatement.setString(2, profesor.getNoPersonal());
             
             preparedStatement.executeUpdate();
             
             resultado = true;
-
-            conexion.close();
-            preparedStatement.close();
-
-
-        } catch (SQLException e) {
+            
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultado;
@@ -50,11 +43,11 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
     public Profesor consultarProfesor(String noPersonal) {
 
          Profesor profesor = null;
+         String consultaSQL = "SELECT idUsuario, noPersonal FROM PROFESOR WHERE noPersonal = ?";
 
-         try {
-             Connection conexion = ConexionBD.conectar();
-             String consultaSQL = "SELECT idUsuario, noPersonal FROM PROFESOR WHERE noPersonal = ?";
-             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
+         try(Connection conexion = ConexionBD.getConnection();
+             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+             
              preparedStatement.setString(1, noPersonal);
 
              ResultSet results = preparedStatement.executeQuery();
@@ -68,9 +61,7 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
 
              }
 
-             conexion.close();
-
-         } catch (SQLException e) {
+         } catch (Exception e) {
              e.printStackTrace();
          }
 
