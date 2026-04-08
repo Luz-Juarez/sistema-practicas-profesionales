@@ -44,25 +44,35 @@ public class ProfesorDAO extends UsuarioDAO {
         return resultado;
     }
      
-    public void consultarProfesor(Profesor profesor) {
-        try {
-            Connection conexion = ConexionBD.conectar();
-            String consultaSQL = "SELECT idUsuario, noPersonal FROM PROFESOR WHERE noPersonal = ?";
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
-            preparedStatement.setString(1, profesor.getNoPersonal());
-            ResultSet results = preparedStatement.executeQuery();
+    public Profesor consultarProfesor(String noPersonal) {
 
-            if (results.next()) {
-                System.out.println("ID: " + results.getInt("idUsuario"));
-                System.out.println("No. Personal: " + results.getString("noPersonal"));
-            } else {
-                System.out.println("No se encontró el profesor");
-            }
-            conexion.close();
-        } catch (SQLException e) {
-            System.out.println("Error");
-        }
+         Profesor profesor = null;
+
+         try {
+             Connection conexion = ConexionBD.conectar();
+             String consultaSQL = "SELECT idUsuario, noPersonal FROM PROFESOR WHERE noPersonal = ?";
+             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
+             preparedStatement.setString(1, noPersonal);
+
+             ResultSet results = preparedStatement.executeQuery();
+
+             if (results.next()) {
+
+                 profesor = new Profesor();
+
+                 profesor.setIdUsuario(results.getInt("idUsuario"));
+                 profesor.setNoPersonal(results.getString("noPersonal"));
+
+             }
+
+             conexion.close();
+
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+
+         return profesor;
     }
-    
-    
+
+       
 }

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import logicadenegocio.clasesdto.Organizacion;
 import logicadenegocio.clasesdto.Proyecto;
 
 
@@ -32,7 +33,7 @@ public class ProyectoDAO {
             preparedStatement.setString(2, proyecto.getDescripcion());
             preparedStatement.setString(3, proyecto.getNombreResponsable());
             preparedStatement.setInt(4, proyecto.getCupoMaximo());
-            preparedStatement.setBoolean(5, proyecto.esActivo());
+            preparedStatement.setBoolean(5, proyecto.getEsActivo());
             preparedStatement.setInt(6, proyecto.getOrganizacion().getIdOrganizacion());
             
             preparedStatement.executeUpdate();
@@ -44,41 +45,49 @@ public class ProyectoDAO {
 
 
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
         return resultado;
     }
-    
-    public void consultarProyecto(Proyecto proyecto) {
+       
+    public Proyecto consultarProyecto(int idProyecto) {
+        Proyecto proyecto = null;
+
         try {
             Connection conexion = ConexionBD.conectar();
             String consultaSQL = "SELECT * FROM PROYECTO WHERE idProyecto = ?";
             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
-            preparedStatement.setInt(1, proyecto.getIdProyecto());
+            preparedStatement.setInt(1, idProyecto);
+
             ResultSet results = preparedStatement.executeQuery();
 
             if (results.next()) {
-                
-                System.out.println("Id Proyecto: " + results.getInt("idProyecto"));
-                System.out.println("Nombre: " + results.getString("nombre"));
-                System.out.println("Descripcion: " + results.getString("descripcion"));
-                System.out.println("Nombre Responsable: " + results.getString("nombreResponsable"));
-                System.out.println("Cupo Maximo: " + results.getInt("cupoMaximo"));
+                proyecto = new Proyecto();
+
+                proyecto.setIdProyecto(results.getInt("idProyecto"));
+                proyecto.setNombre(results.getString("nombre"));
+                proyecto.setDescripcion(results.getString("descripcion"));
+                proyecto.setNombreResponsable(results.getString("nombreResponsable"));
+                proyecto.setCupoMaximo(results.getInt("cupoMaximo"));
                 int esActivo = results.getInt("estado");
-                if(esActivo==1){
-                    System.out.println("¿Esta activo? : Si" );
-                }else{
-                    System.out.println("¿Esta activo? : No");
+                if (esActivo == 1) {
+                    proyecto.setEsActivo(true);
+                } else {
+                    proyecto.setEsActivo(false);
                 }
-                System.out.println("Organizacion" + results.getInt("idOrganizacion"));
-                
-            } else {
-                System.out.println("No se encontró el proyecto");
+                Organizacion organizacion = new Organizacion();
+                organizacion.setIdOrganizacion(results.getInt("idOrganizacion"));
+
+                proyecto.setOrganizacion(organizacion);
             }
+
             conexion.close();
+
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
+
+        return proyecto;
     }
-    
+
 }

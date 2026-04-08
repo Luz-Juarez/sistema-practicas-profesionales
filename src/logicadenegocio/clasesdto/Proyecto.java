@@ -71,11 +71,11 @@ public class Proyecto {
         this.cupoMaximo = cupoMaximo;
     }
 
-    public boolean esActivo() {
+    public boolean getEsActivo() {
         return esActivo;
     }
 
-    public void setIsActivo(boolean esActivo) {
+    public void setEsActivo(boolean esActivo) {
         this.esActivo = esActivo;
     }
 
