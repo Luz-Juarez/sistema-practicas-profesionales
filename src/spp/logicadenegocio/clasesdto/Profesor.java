@@ -9,22 +9,22 @@ package spp.logicadenegocio.clasesdto;
  * @author Luz Fernanda H J
  */
 public class Profesor extends Usuario{
-    private String noPersonal;
+    private String numeroDePersonal;
 
     public Profesor() {
     }
 
-    public Profesor(int idUsuario, String nombre, String apellidos, String contraseña, boolean esActivo,String noPersonal) {
+    public Profesor(int idUsuario, String nombre, String apellidos, String contraseña, boolean esActivo,String numeroDePersonal) {
         super(idUsuario, nombre, apellidos, contraseña, esActivo);
-        this.noPersonal=noPersonal;
+        this.numeroDePersonal = numeroDePersonal;
     }
     
-    public String getNoPersonal() {
-        return noPersonal;
+    public String getNumeroDePersonal() {
+        return numeroDePersonal;
     }
 
-    public void setNoPersonal(String noPersonal) {
-        this.noPersonal = noPersonal;
+    public void setNumeroDePersonal(String numeroDePersonal) {
+        this.numeroDePersonal = numeroDePersonal;
     }
     
 

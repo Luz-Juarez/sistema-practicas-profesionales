@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @author Luz Fernanda H J
  */
 public class Mensaje {
-    private Integer idMensaje; 
+    private int idMensaje; 
     private String asunto; 
     private String cuerpo;
     private LocalDateTime fecha;
@@ -18,18 +18,18 @@ public class Mensaje {
     public Mensaje(){
     }
 
-    public Mensaje(Integer idMensaje, String asunto, String cuerpo, LocalDateTime fecha) {
+    public Mensaje(int idMensaje, String asunto, String cuerpo, LocalDateTime fecha) {
         this.idMensaje = idMensaje;
         this.asunto = asunto;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
     }
 
-    public Integer getIdMensaje() {
+    public int getIdMensaje() {
         return idMensaje;
     }
 
-    public void setIdMensaje(Integer idMensaje) {
+    public void setIdMensaje(int idMensaje) {
         this.idMensaje = idMensaje;
     }
 

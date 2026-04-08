@@ -14,7 +14,7 @@ import spp.utilerias.ConfiguracionBaseDatos;
  */
 public class ConexionBD {
         
-    public static Connection getConnection() throws Exception{
+    public static Connection getConexion() throws Exception{
         String URL = ConfiguracionBaseDatos.get("db.url");
         String USUARIO = ConfiguracionBaseDatos.get("db.usuario");
         String CONTRASENIA = ConfiguracionBaseDatos.get("db.contrasenia");

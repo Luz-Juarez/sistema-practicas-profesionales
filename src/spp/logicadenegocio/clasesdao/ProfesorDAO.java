@@ -20,44 +20,44 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
     
     @Override
     public boolean registrarProfesor(Profesor profesor){
-        boolean resultado = false;
+        boolean registroExitoso = false;
         String consultaSQL = """
-                INSERT INTO PROFESOR (idUsuario, noPersonal) VALUES (?, ?)""";
-        try(Connection conexion = ConexionBD.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+                INSERT INTO Profesor (idUsuario, noPersonal) VALUES (?, ?)""";
+        try(Connection conexion = ConexionBD.getConexion();
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
 
-            preparedStatement.setInt(1, profesor.getIdUsuario());
-            preparedStatement.setString(2, profesor.getNoPersonal());
+            consultaPreparada.setInt(1, profesor.getIdUsuario());
+            consultaPreparada.setString(2, profesor.getNumeroDePersonal());
             
-            preparedStatement.executeUpdate();
+            consultaPreparada.executeUpdate();
             
-            resultado = true;
+            registroExitoso = true;
             
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return resultado;
+        return registroExitoso;
     }
     
     @Override
-    public Profesor consultarProfesor(String noPersonal) {
+    public Profesor consultarProfesor(String numeroDePersonal) {
 
          Profesor profesor = null;
          String consultaSQL = "SELECT idUsuario, noPersonal FROM PROFESOR WHERE noPersonal = ?";
 
-         try(Connection conexion = ConexionBD.getConnection();
-             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+         try(Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
              
-             preparedStatement.setString(1, noPersonal);
+             consultaPreparada.setString(1, numeroDePersonal);
 
-             ResultSet results = preparedStatement.executeQuery();
+             ResultSet resultadosConsulta = consultaPreparada.executeQuery();
 
-             if (results.next()) {
+             if (resultadosConsulta.next()) {
 
                  profesor = new Profesor();
 
-                 profesor.setIdUsuario(results.getInt("idUsuario"));
-                 profesor.setNoPersonal(results.getString("noPersonal"));
+                 profesor.setIdUsuario(resultadosConsulta.getInt("idUsuario"));
+                 profesor.setNumeroDePersonal(resultadosConsulta.getString("noPersonal"));
 
              }
 
@@ -69,7 +69,7 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
     }
 
     @Override
-    public boolean eliminarProfesor(String noPersonal) {
+    public boolean eliminarProfesor(String numeroDePersonal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

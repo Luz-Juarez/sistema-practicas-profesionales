@@ -21,24 +21,24 @@ public class OrganizacionDAO implements IOrganizacionDAO{
     
     @Override
     public boolean registrarOrganizacion(Organizacion organizacion){
-        boolean resultado = false;
+        boolean registroExitoso = false;
         String consultaSQL = """
-                INSERT INTO ORGANIZACION (nombre, direccion, sector, estado) VALUES (?, ?, ?, ?, ?, ?)""";
-        try (Connection conexion = ConexionBD.getConnection(); 
-             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);){
+                INSERT INTO Organizacion(nombre, direccion, sector, estado) VALUES (?, ?, ?, ?)""";
+        try (Connection conexion = ConexionBD.getConexion(); 
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
             
-            preparedStatement.setString(1, organizacion.getNombre());
-            preparedStatement.setString(2, organizacion.getDireccion());
-            preparedStatement.setString(3, organizacion.getSector());
-            preparedStatement.setBoolean(4, organizacion.esActivo());
+            consultaPreparada.setString(1, organizacion.getNombre());
+            consultaPreparada.setString(2, organizacion.getDireccion());
+            consultaPreparada.setString(3, organizacion.getSector());
+            consultaPreparada.setBoolean(4, organizacion.esActivo());
             
-            preparedStatement.executeUpdate();
+            consultaPreparada.executeUpdate();
             
-            resultado = true;
+            registroExitoso = true;
         } catch (Exception e) {
             System.out.println("Error");
         }
-        return resultado;
+        return registroExitoso;
     }
     
     @Override
@@ -47,23 +47,23 @@ public class OrganizacionDAO implements IOrganizacionDAO{
         Organizacion organizacion = null;
         String consultaSQL = "SELECT * FROM ORGANIZACION WHERE idOrganizacion = ?";
         
-        try (Connection conexion = ConexionBD.getConnection();
-             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);){
+        try (Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
             
-            preparedStatement.setInt(1, idOrganizacion);
+            consultaPreparada.setInt(1, idOrganizacion);
 
-            ResultSet results = preparedStatement.executeQuery();
+            ResultSet resultadosConsulta = consultaPreparada.executeQuery();
 
-            if (results.next()) {
+            if (resultadosConsulta.next()) {
 
                 organizacion = new Organizacion();
 
-                organizacion.setIdOrganizacion(results.getInt("idOrganizacion"));
-                organizacion.setNombre(results.getString("nombre"));
-                organizacion.setDireccion(results.getString("direccion"));
-                organizacion.setSector(results.getString("sector"));
+                organizacion.setIdOrganizacion(resultadosConsulta.getInt("idOrganizacion"));
+                organizacion.setNombre(resultadosConsulta.getString("nombre"));
+                organizacion.setDireccion(resultadosConsulta.getString("direccion"));
+                organizacion.setSector(resultadosConsulta.getString("sector"));
 
-                int esActivo = results.getInt("estado");
+                int esActivo = resultadosConsulta.getInt("estado");
                 if (esActivo == 1) {
                     organizacion.setEsActivo(true);
                 } else {

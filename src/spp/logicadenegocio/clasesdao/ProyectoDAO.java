@@ -22,29 +22,29 @@ public class ProyectoDAO implements IProyectoDAO {
     
     @Override
     public boolean registrarProyecto(Proyecto proyecto){
-        boolean resultado = false;
+        boolean registroExitoso = false;
         String consultaSQL = """
-                INSERT INTO PROYECTO 
+                INSERT INTO Proyecto 
                 (nombre, descripcion, nombreResponsable, cupoMaximo, estado, 
                   Organizacion_idOrganizacion) VALUES (?, ?, ?, ?, ?, ?)""";
-        try(Connection conexion = ConexionBD.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+        try(Connection conexion = ConexionBD.getConexion();
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
 
-            preparedStatement.setInt(1, proyecto.getIdProyecto());
-            preparedStatement.setString(2, proyecto.getDescripcion());
-            preparedStatement.setString(3, proyecto.getNombreResponsable());
-            preparedStatement.setInt(4, proyecto.getCupoMaximo());
-            preparedStatement.setBoolean(5, proyecto.getEsActivo());
-            preparedStatement.setInt(6, proyecto.getOrganizacion().getIdOrganizacion());
+            consultaPreparada.setString(1, proyecto.getNombre());
+            consultaPreparada.setString(2, proyecto.getDescripcion());
+            consultaPreparada.setString(3, proyecto.getNombreResponsable());
+            consultaPreparada.setInt(4, proyecto.getCupoMaximo());
+            consultaPreparada.setBoolean(5, proyecto.getEsActivo());
+            consultaPreparada.setInt(6, proyecto.getOrganizacion().getIdOrganizacion());
             
-            preparedStatement.executeUpdate();
+            consultaPreparada.executeUpdate();
             
-            resultado = true;
+            registroExitoso = true;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return resultado;
+        return registroExitoso;
     }
        
     @Override
@@ -52,29 +52,29 @@ public class ProyectoDAO implements IProyectoDAO {
         Proyecto proyecto = null;
          String consultaSQL = "SELECT * FROM PROYECTO WHERE idProyecto = ?";
 
-        try(Connection conexion = ConexionBD.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+        try(Connection conexion = ConexionBD.getConexion();
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
           
-            preparedStatement.setInt(1, idProyecto);
+            consultaPreparada.setInt(1, idProyecto);
 
-            ResultSet results = preparedStatement.executeQuery();
+            ResultSet resultadosConsulta = consultaPreparada.executeQuery();
 
-            if (results.next()) {
+            if (resultadosConsulta.next()) {
                 proyecto = new Proyecto();
 
-                proyecto.setIdProyecto(results.getInt("idProyecto"));
-                proyecto.setNombre(results.getString("nombre"));
-                proyecto.setDescripcion(results.getString("descripcion"));
-                proyecto.setNombreResponsable(results.getString("nombreResponsable"));
-                proyecto.setCupoMaximo(results.getInt("cupoMaximo"));
-                int esActivo = results.getInt("estado");
+                proyecto.setIdProyecto(resultadosConsulta.getInt("idProyecto"));
+                proyecto.setNombre(resultadosConsulta.getString("nombre"));
+                proyecto.setDescripcion(resultadosConsulta.getString("descripcion"));
+                proyecto.setNombreResponsable(resultadosConsulta.getString("nombreResponsable"));
+                proyecto.setCupoMaximo(resultadosConsulta.getInt("cupoMaximo"));
+                int esActivo = resultadosConsulta.getInt("estado");
                 if (esActivo == 1) {
                     proyecto.setEsActivo(true);
                 } else {
                     proyecto.setEsActivo(false);
                 }
                 Organizacion organizacion = new Organizacion();
-                organizacion.setIdOrganizacion(results.getInt("idOrganizacion"));
+                organizacion.setIdOrganizacion(resultadosConsulta.getInt("idOrganizacion"));
 
                 proyecto.setOrganizacion(organizacion);
             }

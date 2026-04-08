@@ -19,12 +19,12 @@ public class CoordinadorDAO implements ICoordinadorDAO {
     }
 
     @Override
-    public Coordinador consultarCoordinador(String noPersonal) {
+    public Coordinador consultarCoordinador(String numeroDePersonal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean eliminarCoordinador(String noPersonal) {
+    public boolean eliminarCoordinador(String numeroDePersonal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

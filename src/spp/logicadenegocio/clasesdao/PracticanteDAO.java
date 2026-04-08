@@ -20,29 +20,30 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
     
     @Override
     public boolean registrarPracticante(Practicante practicante){
-        boolean resultado = false;
+        boolean registroExitoso = false;
         String consultaSQL = """
-                INSERT INTO PRACTICANTE (idUsuario, matricula, genero, lenguaIndigena, fechaNacimiento) VALUES (?, ?)""";
-        try (Connection conexion = ConexionBD.getConnection();
-             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+                INSERT INTO Practicante (idUsuario, matricula, genero, lenguaIndigena, fechaNacimiento) 
+                             VALUES (?, ?, ?, ?, ?)""";
+        try (Connection conexion = ConexionBD.getConexion();
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
 
-            preparedStatement.setInt(1, practicante.getIdUsuario());
-            preparedStatement.setString(2, practicante.getMatricula());
-            preparedStatement.setString(3, practicante.getGenero());
-            preparedStatement.setBoolean(4, practicante.gethablaLenguaIndigena());
+            consultaPreparada.setInt(1, practicante.getIdUsuario());
+            consultaPreparada.setString(2, practicante.getMatricula());
+            consultaPreparada.setString(3, practicante.getGenero());
+            consultaPreparada.setBoolean(4, practicante.gethablaLenguaIndigena());
             // Convertimos el java.util.Date a java.sql.Date
             java.sql.Date fechaParaBD = new java.sql.Date(practicante.getFechaNacimiento().getTime());
-            preparedStatement.setDate(5, fechaParaBD);
+            consultaPreparada.setDate(5, fechaParaBD);
             
             
-            preparedStatement.executeUpdate();
+            consultaPreparada.executeUpdate();
             
-            resultado = true;
+            registroExitoso = true;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return resultado;
+        return registroExitoso;
     }
      
     @Override
@@ -50,19 +51,19 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
 
         Practicante practicante = null;
         String consultaSQL = "SELECT idUsuario, matricula FROM PRACTICANTE WHERE matricula = ?";
-        try(Connection conexion = ConexionBD.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+        try(Connection conexion = ConexionBD.getConexion();
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
             
-            preparedStatement.setString(1, matricula);
+            consultaPreparada.setString(1, matricula);
 
-            ResultSet results = preparedStatement.executeQuery();
+            ResultSet resultadosConsulta = consultaPreparada.executeQuery();
 
-            if (results.next()) {
+            if (resultadosConsulta.next()) {
 
                 practicante = new Practicante();
 
-                practicante.setIdUsuario(results.getInt("idUsuario"));
-                practicante.setMatricula(results.getString("matricula"));
+                practicante.setIdUsuario(resultadosConsulta.getInt("idUsuario"));
+                practicante.setMatricula(resultadosConsulta.getString("matricula"));
 
             }
 

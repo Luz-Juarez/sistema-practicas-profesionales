@@ -21,33 +21,33 @@ public class UsuarioDAO implements IUsuarioDAO {
     
     @Override
     public int registrarUsuario(Usuario usuario){
-        boolean resultado = false;
+        boolean registroExitoso = false;
         String consultaSQL = """
-                INSERT INTO USUARIO (nombre, apellidos, contrasena, estado) VALUES (?, ?, ?, ?)""";
-        try(Connection conexion = ConexionBD.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL,Statement.RETURN_GENERATED_KEYS);) {
+                INSERT INTO Usuario (nombre, apellidos, contrasena, estado) VALUES (?, ?, ?, ?)""";
+        try(Connection conexion = ConexionBD.getConexion();
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL,Statement.RETURN_GENERATED_KEYS);) {
 
-            preparedStatement.setString(1, usuario.getNombre());
-            preparedStatement.setString(2, usuario.getApellidos());
-            preparedStatement.setString(3, usuario.getContraseña());
-            preparedStatement.setBoolean(4, usuario.getEsActivo());
+            consultaPreparada.setString(1, usuario.getNombre());
+            consultaPreparada.setString(2, usuario.getApellidos());
+            consultaPreparada.setString(3, usuario.getContraseña());
+            consultaPreparada.setBoolean(4, usuario.getEsActivo());
 
-            preparedStatement.executeUpdate();
+            consultaPreparada.executeUpdate();
             
-            ResultSet results = preparedStatement.getGeneratedKeys();
+            ResultSet resultadosConsulta = consultaPreparada.getGeneratedKeys();
 
-            if (results.next()) {
-                int idGenerado = results.getInt(1);
+            if (resultadosConsulta.next()) {
+                int idGenerado = resultadosConsulta.getInt(1);
                 usuario.setIdUsuario(idGenerado);
             }
 
-            resultado = true;
-            results.close();
+            registroExitoso = true;
+            resultadosConsulta.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(resultado){
+        if(registroExitoso){
             return usuario.getIdUsuario();
         }else{
             return 0;
@@ -60,22 +60,22 @@ public class UsuarioDAO implements IUsuarioDAO {
         Usuario usuario = null;
         String consultaSQL = "SELECT idUsuario, nombre, apellidos, estado FROM USUARIO WHERE idUsuario = ?";
 
-        try(Connection conexion = ConexionBD.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);) {
+        try(Connection conexion = ConexionBD.getConexion();
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
             
-            preparedStatement.setInt(1, idUsuario);
+            consultaPreparada.setInt(1, idUsuario);
 
-            ResultSet results = preparedStatement.executeQuery();
+            ResultSet resultadosConsulta = consultaPreparada.executeQuery();
 
-            if (results.next()) {
+            if (resultadosConsulta.next()) {
 
                 usuario = new Usuario();
 
-                usuario.setIdUsuario(results.getInt("idUsuario"));
-                usuario.setNombre(results.getString("nombre"));
-                usuario.setApellidos(results.getString("apellidos"));
+                usuario.setIdUsuario(resultadosConsulta.getInt("idUsuario"));
+                usuario.setNombre(resultadosConsulta.getString("nombre"));
+                usuario.setApellidos(resultadosConsulta.getString("apellidos"));
 
-                int esActivo = results.getInt("estado");
+                int esActivo = resultadosConsulta.getInt("estado");
                 if (esActivo == 1) {
                     usuario.setEsActivo(true);
                 } else {

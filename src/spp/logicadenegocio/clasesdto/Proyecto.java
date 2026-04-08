@@ -9,11 +9,11 @@ package spp.logicadenegocio.clasesdto;
  * @author Luz Fernanda H J
  */
 public class Proyecto {
-    private Integer idProyecto; 
+    private int idProyecto; 
     private String nombre; 
     private String descripcion;
     private String nombreResponsable;
-    private Integer cupoMaximo;
+    private int cupoMaximo;
     private boolean esActivo;
     private Organizacion Organizacion;
     //Calendarización decidimos que será parte de Documento
@@ -21,7 +21,7 @@ public class Proyecto {
     public Proyecto (){
     }
     
-    public Proyecto(Integer idProyecto, String nombre, String descripcion, String nombreResponsable, Integer cupoMaximo, boolean esActivo, Organizacion Organizacion) {
+    public Proyecto(int idProyecto, String nombre, String descripcion, String nombreResponsable, int cupoMaximo, boolean esActivo, Organizacion Organizacion) {
         this.idProyecto = idProyecto;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -31,11 +31,11 @@ public class Proyecto {
         this.Organizacion = Organizacion;
     }
 
-    public Integer getIdProyecto() {
+    public int getIdProyecto() {
         return idProyecto;
     }
 
-    public void setIdProyecto(Integer idProyecto) {
+    public void setIdProyecto(int idProyecto) {
         this.idProyecto = idProyecto;
     }
 
@@ -63,11 +63,11 @@ public class Proyecto {
         this.nombreResponsable = nombreResponsable;
     }
 
-    public Integer getCupoMaximo() {
+    public int getCupoMaximo() {
         return cupoMaximo;
     }
 
-    public void setCupoMaximo(Integer cupoMaximo) {
+    public void setCupoMaximo(int cupoMaximo) {
         this.cupoMaximo = cupoMaximo;
     }
 
