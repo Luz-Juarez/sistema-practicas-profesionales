@@ -12,7 +12,7 @@ import spp.logicadenegocio.clasesdto.Organizacion;
  */
 public interface IOrganizacionDAO {
     public boolean registrarOrganizacion(Organizacion organizacion);
-    public Organizacion consultarOrganizacion();
-    public boolean eliminarOrganizacion();
+    public Organizacion consultarOrganizacion(int idOrganizacion);
+    public boolean eliminarOrganizacion(int idOrganizacion);
     public boolean actualizarOrganizacion(Organizacion organizacion);
 }

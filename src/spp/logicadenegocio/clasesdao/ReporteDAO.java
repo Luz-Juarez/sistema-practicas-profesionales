@@ -4,10 +4,23 @@
  */
 package spp.logicadenegocio.clasesdao;
 
+import spp.logicadenegocio.clasesdto.Reporte;
+import spp.logicadenegocio.interfacesdao.IReporteDAO;
+
 /**
  *
  * @author gomes
  */
-public class ReporteDAO {
+public class ReporteDAO implements IReporteDAO{
+
+    @Override
+    public boolean registarReporte(Reporte reporte) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Reporte consultarReporte() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

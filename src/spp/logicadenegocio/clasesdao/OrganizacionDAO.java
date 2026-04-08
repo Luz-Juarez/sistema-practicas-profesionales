@@ -10,14 +10,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Organizacion;
+import spp.logicadenegocio.interfacesdao.IOrganizacionDAO;
 
 
 /**
  *
  * @author Luz Fernanda H J
  */
-public class OrganizacionDAO {
+public class OrganizacionDAO implements IOrganizacionDAO{
     
+    @Override
     public boolean registrarOrganizacion(Organizacion organizacion){
         boolean resultado = false;
         String consultaSQL = """
@@ -33,40 +35,61 @@ public class OrganizacionDAO {
             preparedStatement.executeUpdate();
             
             resultado = true;
-
         } catch (Exception e) {
             System.out.println("Error");
         }
         return resultado;
     }
-    public void consultarOrganizacion(Organizacion organizacion) {
+    
+    @Override
+    public Organizacion consultarOrganizacion(int idOrganizacion) {
+
+        Organizacion organizacion = null;
+
         try {
             Connection conexion = ConexionBD.conectar();
             String consultaSQL = "SELECT * FROM ORGANIZACION WHERE idOrganizacion = ?";
             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
-            preparedStatement.setInt(1, organizacion.getIdOrganizacion());
+            preparedStatement.setInt(1, idOrganizacion);
+
             ResultSet results = preparedStatement.executeQuery();
 
             if (results.next()) {
-                
-                System.out.println("Id Organizacion: " + results.getInt("idOrganizacion"));
-                System.out.println("Nombre: " + results.getString("nombre"));
-                System.out.println("Direccion: " + results.getString("direccion"));
-                System.out.println("Sector: " + results.getString("sector"));
+
+                organizacion = new Organizacion();
+
+                organizacion.setIdOrganizacion(results.getInt("idOrganizacion"));
+                organizacion.setNombre(results.getString("nombre"));
+                organizacion.setDireccion(results.getString("direccion"));
+                organizacion.setSector(results.getString("sector"));
+
                 int esActivo = results.getInt("estado");
-                if(esActivo==1){
-                    System.out.println("¿Esta activo? : Si" );
-                }else{
-                    System.out.println("¿Esta activo? : No");
+                if (esActivo == 1) {
+                    organizacion.setEsActivo(true);
+                } else {
+                    organizacion.setEsActivo(false);
                 }
-                
-            } else {
-                System.out.println("No se encontró la organizacion");
+
             }
+
             conexion.close();
+
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
+
+        return organizacion;
     }
+
+    @Override
+    public boolean eliminarOrganizacion(int idOrganizacion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean actualizarOrganizacion(Organizacion organizacion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }

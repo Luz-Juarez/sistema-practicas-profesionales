@@ -11,12 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Usuario;
 import java.sql.ResultSet;
+import spp.logicadenegocio.interfacesdao.IUsuarioDAO;
 
 /**
  *
  * @author Luz Fernanda H J
  */
-public class UsuarioDAO {
+public class UsuarioDAO implements IUsuarioDAO {
+    
+    @Override
     public int registrarUsuario(Usuario usuario){
         boolean resultado = false;
         try {
@@ -50,7 +53,7 @@ public class UsuarioDAO {
 
 
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
         if(resultado){
             return usuario.getIdUsuario();
@@ -59,26 +62,53 @@ public class UsuarioDAO {
         }
     }
     
-    public void consultarUsuario(Usuario usuario) {
+    @Override
+    public Usuario consultarUsuario(int idUsuario) {
+
+        Usuario usuario = null;
+
         try {
             Connection conexion = ConexionBD.conectar();
             String consultaSQL = "SELECT idUsuario, nombre, apellidos, estado FROM USUARIO WHERE idUsuario = ?";
             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
-            preparedStatement.setInt(1, usuario.getIdUsuario());
+            preparedStatement.setInt(1, idUsuario);
+
             ResultSet results = preparedStatement.executeQuery();
 
             if (results.next()) {
-                System.out.println("ID: " + results.getInt("idUsuario"));
-                System.out.println("Nombre: " + results.getString("nombre"));
-                System.out.println("Apellidos: " + results.getString("apellidos"));
-                System.out.println("Estado: " + results.getBoolean("estado"));
-            } else {
-                System.out.println("No se encontró el usuario");
-            }
+
+                usuario = new Usuario();
+
+                usuario.setIdUsuario(results.getInt("idUsuario"));
+                usuario.setNombre(results.getString("nombre"));
+                usuario.setApellidos(results.getString("apellidos"));
+
+                int esActivo = results.getInt("estado");
+                if (esActivo == 1) {
+                    usuario.setEsActivo(true);
+                } else {
+                    usuario.setEsActivo(false);
+                }
+
+            } 
             conexion.close();
+
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
+
+    return usuario;
+}
+
+    @Override
+    public boolean eliminarUsuario(int idUsuario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public boolean actualizarUsuario(Usuario usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }

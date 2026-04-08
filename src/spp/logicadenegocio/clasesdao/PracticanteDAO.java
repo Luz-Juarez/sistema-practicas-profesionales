@@ -10,13 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Practicante;
+import spp.logicadenegocio.interfacesdao.IPracticanteDAO;
 
 /**
  *
  * @author Luz Fernanda H J
  */
-public class PracticanteDAO extends UsuarioDAO{
+public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
     
+    @Override
     public boolean registrarPracticante(Practicante practicante){
         boolean resultado = false;
         try {
@@ -46,29 +48,51 @@ public class PracticanteDAO extends UsuarioDAO{
 
 
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
         return resultado;
     }
      
-    public void consultarPracticante(Practicante practicante) {
+    @Override
+    public Practicante consultarPracticante(String matricula) {
+
+        Practicante practicante = null;
+
         try {
             Connection conexion = ConexionBD.conectar();
             String consultaSQL = "SELECT idUsuario, matricula FROM PRACTICANTE WHERE matricula = ?";
             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
-            preparedStatement.setString(1, practicante.getMatricula());
+            preparedStatement.setString(1, matricula);
+
             ResultSet results = preparedStatement.executeQuery();
 
             if (results.next()) {
-                System.out.println("ID: " + results.getInt("idUsuario"));
-                System.out.println("Matricula: " + results.getString("matricula"));
-            } else {
-                System.out.println("No se encontró el practicante");
+
+                practicante = new Practicante();
+
+                practicante.setIdUsuario(results.getInt("idUsuario"));
+                practicante.setMatricula(results.getString("matricula"));
+
             }
+
             conexion.close();
+
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
+
+        return practicante;
     }
+
+    @Override
+    public boolean eliminarPracticante(String matricula) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean actualizarPracticante(Practicante practicante) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }
