@@ -10,3 +10,6 @@
 
 # Logs
 *.log
+
+# Archivos Recursos
+src/recursos/baseDatos.properties
