@@ -12,7 +12,7 @@ import logicadenegocio.clasesdto.Profesor;
  */
 public interface IProfesorDAO {
     public boolean registrarProfesor(Profesor profesor);
-    public Profesor consultarProfesor();
-    public boolean eliminarProfesor();
+    public Profesor consultarProfesor(String noPersonal);
+    public boolean eliminarProfesor(String noPersonal);
     public boolean actualizarProfesor(Profesor profesor);
 }

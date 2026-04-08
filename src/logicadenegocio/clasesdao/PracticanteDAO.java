@@ -10,13 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import logicadenegocio.clasesdto.Practicante;
+import logicadenegocio.interfacesdao.IPracticanteDAO;
 
 /**
  *
  * @author Luz Fernanda H J
  */
-public class PracticanteDAO extends UsuarioDAO{
+public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
     
+    @Override
     public boolean registrarPracticante(Practicante practicante){
         boolean resultado = false;
         try {
@@ -46,11 +48,12 @@ public class PracticanteDAO extends UsuarioDAO{
 
 
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
         return resultado;
     }
      
+    @Override
     public Practicante consultarPracticante(String matricula) {
 
         Practicante practicante = null;
@@ -79,6 +82,16 @@ public class PracticanteDAO extends UsuarioDAO{
         }
 
         return practicante;
+    }
+
+    @Override
+    public boolean eliminarPracticante(String matricula) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean actualizarPracticante(Practicante practicante) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     

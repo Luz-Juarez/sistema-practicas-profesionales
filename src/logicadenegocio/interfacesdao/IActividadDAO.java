@@ -12,7 +12,7 @@ import logicadenegocio.clasesdto.Actividad;
  */
 public interface IActividadDAO {
     public boolean registrarActividad(Actividad actividad);
-    public Actividad consultarActividad();
-    public boolean eliminarActividad();
+    public Actividad consultarActividad(int idActividad);
+    public boolean eliminarActividad(int idActividad);
     public boolean actualizarActividad(Actividad actividad);
 }

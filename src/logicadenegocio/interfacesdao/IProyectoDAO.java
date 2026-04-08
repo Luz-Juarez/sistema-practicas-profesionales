@@ -12,7 +12,7 @@ import logicadenegocio.clasesdto.Proyecto;
  */
 public interface IProyectoDAO {
     public boolean registrarProyecto(Proyecto proyecto);
-    public Proyecto consultarProyecto();
-    public boolean eliminarProyecto();
+    public Proyecto consultarProyecto(int idProyecto);
+    public boolean eliminarProyecto(int idProyecto);
     public boolean actualizarProyecto(Proyecto proyecto);
 }

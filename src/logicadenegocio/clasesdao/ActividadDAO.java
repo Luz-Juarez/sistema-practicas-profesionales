@@ -4,10 +4,33 @@
  */
 package logicadenegocio.clasesdao;
 
+import logicadenegocio.clasesdto.Actividad;
+import logicadenegocio.interfacesdao.IActividadDAO;
+
 /**
  *
  * @author gomes
  */
-public class ActividadDAO {
+public class ActividadDAO implements IActividadDAO{
+
+    @Override
+    public boolean registrarActividad(Actividad actividad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Actividad consultarActividad(int idActividad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean eliminarActividad(int idActividad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean actualizarActividad(Actividad actividad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

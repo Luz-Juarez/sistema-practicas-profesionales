@@ -4,10 +4,33 @@
  */
 package logicadenegocio.clasesdao;
 
+import logicadenegocio.clasesdto.Coordinador;
+import logicadenegocio.interfacesdao.ICoordinadorDAO;
+
 /**
  *
  * @author gomes
  */
-public class CoordinadorDAO {
+public class CoordinadorDAO implements ICoordinadorDAO {
+
+    @Override
+    public boolean registrarCoordinador(Coordinador coordinador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Coordinador consultarCoordinador(String noPersonal) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean eliminarCoordinador(String noPersonal) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean actualizarOrganizacion(Coordinador coordinador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

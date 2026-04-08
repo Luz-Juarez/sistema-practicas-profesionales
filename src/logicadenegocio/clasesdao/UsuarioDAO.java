@@ -11,12 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import logicadenegocio.clasesdto.Usuario;
 import java.sql.ResultSet;
+import logicadenegocio.interfacesdao.IUsuarioDAO;
 
 /**
  *
  * @author Luz Fernanda H J
  */
-public class UsuarioDAO {
+public class UsuarioDAO implements IUsuarioDAO {
+    
+    @Override
     public int registrarUsuario(Usuario usuario){
         boolean resultado = false;
         try {
@@ -50,7 +53,7 @@ public class UsuarioDAO {
 
 
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
         if(resultado){
             return usuario.getIdUsuario();
@@ -59,6 +62,7 @@ public class UsuarioDAO {
         }
     }
     
+    @Override
     public Usuario consultarUsuario(int idUsuario) {
 
         Usuario usuario = null;
@@ -95,6 +99,16 @@ public class UsuarioDAO {
 
     return usuario;
 }
+
+    @Override
+    public boolean eliminarUsuario(int idUsuario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean actualizarUsuario(Usuario usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     
 }

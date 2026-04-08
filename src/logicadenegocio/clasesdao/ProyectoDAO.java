@@ -11,14 +11,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import logicadenegocio.clasesdto.Organizacion;
 import logicadenegocio.clasesdto.Proyecto;
+import logicadenegocio.interfacesdao.IProyectoDAO;
 
 
 /**
  *
  * @author Luz Fernanda H J
  */
-public class ProyectoDAO {
+public class ProyectoDAO implements IProyectoDAO {
     
+    @Override
     public boolean registrarProyecto(Proyecto proyecto){
         boolean resultado = false;
         try {
@@ -50,6 +52,7 @@ public class ProyectoDAO {
         return resultado;
     }
        
+    @Override
     public Proyecto consultarProyecto(int idProyecto) {
         Proyecto proyecto = null;
 
@@ -88,6 +91,17 @@ public class ProyectoDAO {
         }
 
         return proyecto;
+    }
+
+
+    @Override
+    public boolean eliminarProyecto(int idProyecto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean actualizarProyecto(Proyecto proyecto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

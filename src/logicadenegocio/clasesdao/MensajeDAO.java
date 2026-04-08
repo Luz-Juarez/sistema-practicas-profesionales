@@ -4,10 +4,23 @@
  */
 package logicadenegocio.clasesdao;
 
+import logicadenegocio.clasesdto.Mensaje;
+import logicadenegocio.interfacesdao.IMensajeDAO;
+
 /**
  *
  * @author gomes
  */
-public class MensajeDAO {
+public class MensajeDAO implements IMensajeDAO{
+
+    @Override
+    public boolean registrarMensaje(Mensaje mensaje) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Mensaje consultarMensaje() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

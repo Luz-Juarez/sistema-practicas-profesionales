@@ -10,14 +10,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import logicadenegocio.clasesdto.Organizacion;
+import logicadenegocio.interfacesdao.IOrganizacionDAO;
 
 
 /**
  *
  * @author Luz Fernanda H J
  */
-public class OrganizacionDAO {
+public class OrganizacionDAO implements IOrganizacionDAO{
     
+    @Override
     public boolean registrarOrganizacion(Organizacion organizacion){
         boolean resultado = false;
         try {
@@ -42,11 +44,12 @@ public class OrganizacionDAO {
 
 
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
         return resultado;
     }
     
+    @Override
     public Organizacion consultarOrganizacion(int idOrganizacion) {
 
         Organizacion organizacion = null;
@@ -84,6 +87,16 @@ public class OrganizacionDAO {
         }
 
         return organizacion;
+    }
+
+    @Override
+    public boolean eliminarOrganizacion(int idOrganizacion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean actualizarOrganizacion(Organizacion organizacion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     

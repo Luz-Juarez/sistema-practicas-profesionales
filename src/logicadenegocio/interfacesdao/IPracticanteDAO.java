@@ -12,7 +12,7 @@ import logicadenegocio.clasesdto.Practicante;
  */
 public interface IPracticanteDAO {
     public boolean registrarPracticante(Practicante practicante);
-    public Practicante consultarPracticante();
-    public boolean eliminarPracticante();
+    public Practicante consultarPracticante(String matricula);
+    public boolean eliminarPracticante(String matricula);
     public boolean actualizarPracticante(Practicante practicante);
 }

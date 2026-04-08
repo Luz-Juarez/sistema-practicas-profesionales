@@ -12,7 +12,7 @@ import logicadenegocio.clasesdto.Coordinador;
  */
 public interface ICoordinadorDAO {
     public boolean registrarCoordinador(Coordinador coordinador);
-    public Coordinador consultarCoordinador();
-    public boolean eliminarCoordinador();
+    public Coordinador consultarCoordinador(String noPersonal);
+    public boolean eliminarCoordinador(String noPersonal);
     public boolean actualizarOrganizacion(Coordinador coordinador);       
 }
