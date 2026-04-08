@@ -58,7 +58,7 @@ public class Organizacion {
         this.direccion = direccion;
     }
 
-    public boolean esActivo() {
+    public boolean getEsActivo() {
         return esActivo;
     }
 

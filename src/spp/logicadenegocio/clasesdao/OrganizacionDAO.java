@@ -30,7 +30,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
             consultaPreparada.setString(1, organizacion.getNombre());
             consultaPreparada.setString(2, organizacion.getDireccion());
             consultaPreparada.setString(3, organizacion.getSector());
-            consultaPreparada.setBoolean(4, organizacion.esActivo());
+            consultaPreparada.setBoolean(4, organizacion.getEsActivo());
             
             consultaPreparada.executeUpdate();
             
