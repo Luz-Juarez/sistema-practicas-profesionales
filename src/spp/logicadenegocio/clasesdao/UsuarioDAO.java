@@ -119,9 +119,9 @@ public class UsuarioDAO implements IUsuarioDAO {
     public boolean actualizarUsuario(Usuario usuario) {
         boolean actualizacionExitosa = false;
 
-        String consultaSQL = "UPDATE Organizacion SET nombre = ?, direccion = ?, "
-                + "sector = ?, estado = ?"
-                + "WHERE idOrganizacion = ? ";
+        String consultaSQL = "UPDATE Usuario SET nombre = ?, apellidos = ?, "
+                + "contraseña = ?, estado = ?"
+                + "WHERE idUsuario = ?";
 
         try (Connection conexion = ConexionBD.getConexion();
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {

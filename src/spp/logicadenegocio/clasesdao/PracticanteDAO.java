@@ -76,12 +76,56 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
 
     @Override
     public boolean eliminarPracticante(String matricula) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean eliminacionExitosa = false;
+
+        String consultaSQL = "DELETE FROM Practicante WHERE matricula = ?";
+
+        try (Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
+
+            consultaPreparada.setString(1, matricula);
+
+            int filasAfectadas = consultaPreparada.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                eliminacionExitosa = true;
+            }
+        }catch(Exception e){
+            
+        }
+
+        return eliminacionExitosa; 
+
     }
 
     @Override
     public boolean actualizarPracticante(Practicante practicante) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean actualizacionExitosa = false;
+
+        String consultaSQL = "UPDATE Practicante SET matricula = ?, genero = ?, "
+                + "lenguaIndigena = ?, fechaNacimiento = ?"
+                + "WHERE idUsuario = ?";
+
+        try (Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
+
+            consultaPreparada.setString(1, practicante.getMatricula());
+            consultaPreparada.setString(2, practicante.getGenero());
+            consultaPreparada.setBoolean(3, practicante.gethablaLenguaIndigena());
+            java.sql.Date fechaParaBD = new java.sql.Date(practicante.getFechaNacimiento().getTime());
+            consultaPreparada.setDate(4, fechaParaBD);
+            consultaPreparada.setInt(5, practicante.getIdUsuario());
+
+            int filasAfectadas = consultaPreparada.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                actualizacionExitosa = true;
+            }
+        }catch(Exception e){
+            
+        }
+
+        return actualizacionExitosa;
     }
 
     
