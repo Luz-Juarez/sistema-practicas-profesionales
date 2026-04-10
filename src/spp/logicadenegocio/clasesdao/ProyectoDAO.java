@@ -91,12 +91,57 @@ public class ProyectoDAO implements IProyectoDAO {
 
     @Override
     public boolean eliminarProyecto(int idProyecto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean eliminacionExitosa = false;
+
+        String consultaSQL = "DELETE FROM PROYECTO WHERE idProyecto = ?";
+
+        try (Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
+
+            consultaPreparada.setInt(1, idProyecto);
+
+            int filasAfectadas = consultaPreparada.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                eliminacionExitosa = true;
+            }
+        }catch(Exception e){
+            
+        }
+
+        return eliminacionExitosa; 
+
     }
 
     @Override
     public boolean actualizarProyecto(Proyecto proyecto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        boolean actualizacionExitosa = false;
+
+        String consultaSQL = "UPDATE PROYECTO SET nombre = ?, descripcion = ?, "
+                + "nombreResponsable = ?, cupoMaximo = ?, estado = ?, idOrganizacion = ? "
+                + "WHERE idProyecto = ? ";
+
+        try (Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
+
+            consultaPreparada.setString(1, proyecto.getNombre());
+            consultaPreparada.setString(2, proyecto.getDescripcion());
+            consultaPreparada.setString(3, proyecto.getNombreResponsable());
+            consultaPreparada.setInt(4, proyecto.getCupoMaximo());
+            consultaPreparada.setBoolean(5, proyecto.getEsActivo());
+            consultaPreparada.setInt(6, proyecto.getOrganizacion().getIdOrganizacion());
+            consultaPreparada.setInt(7, proyecto.getIdProyecto());
+
+            int filasAfectadas = consultaPreparada.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                actualizacionExitosa = true;
+            }
+        }catch(Exception e){
+            
+        }
+
+        return actualizacionExitosa;
+        }
 
 }
