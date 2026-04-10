@@ -15,16 +15,19 @@ public class Actividad {
     private String titulo;
     private String descripcion;
     private LocalDateTime fechaLimite;
+    private Profesor profesor;
     
     public Actividad(){
         
     }
     
-    public Actividad(int idActividad, String titulo, String descripcion, LocalDateTime fechaLimite){
+    public Actividad(int idActividad, String titulo, String descripcion, 
+            LocalDateTime fechaLimite, Profesor profesor){
         this.idActividad = idActividad; 
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaLimite = fechaLimite;
+        this.profesor = profesor;
     }
     
     public int getIdActividad(){
@@ -58,6 +61,13 @@ public class Actividad {
     public void setFechaLimite(LocalDateTime fechaLimite) {
         this.fechaLimite = fechaLimite;
     }
-    
-    
+
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+       
 }
