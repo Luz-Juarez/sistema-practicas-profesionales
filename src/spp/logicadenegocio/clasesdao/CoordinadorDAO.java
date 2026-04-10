@@ -76,7 +76,7 @@ public class CoordinadorDAO implements ICoordinadorDAO {
     }
 
     @Override
-    public boolean actualizarOrganizacion(Coordinador coordinador) {
+    public boolean actualizarCoordinador(Coordinador coordinador) {
         boolean actualizacionExitosa = false;
         String consultaSQL = "UPDATE Coordinador SET noPersonal";
         try(Connection conexion = ConexionBD.getConexion();

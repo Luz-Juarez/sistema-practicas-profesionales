@@ -14,5 +14,5 @@ public interface ICoordinadorDAO {
     public boolean registrarCoordinador(Coordinador coordinador);
     public Coordinador consultarCoordinador(String numeroDePersonal);
     public boolean eliminarCoordinador(String numeroDePersonal);
-    public boolean actualizarOrganizacion(Coordinador coordinador);       
+    public boolean actualizarCoordinador(Coordinador coordinador);       
 }
