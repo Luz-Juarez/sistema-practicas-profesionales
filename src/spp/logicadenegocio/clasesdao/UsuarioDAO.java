@@ -93,12 +93,55 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public boolean eliminarUsuario(int idUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean eliminacionExitosa = false;
+
+        String consultaSQL = "DELETE FROM Usuario WHERE idUsuario = ?";
+
+        try (Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
+
+            consultaPreparada.setInt(1, idUsuario);
+
+            int filasAfectadas = consultaPreparada.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                eliminacionExitosa = true;
+            }
+        }catch(Exception e){
+            
+        }
+
+        return eliminacionExitosa; 
+
     }
 
     @Override
     public boolean actualizarUsuario(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean actualizacionExitosa = false;
+
+        String consultaSQL = "UPDATE Organizacion SET nombre = ?, direccion = ?, "
+                + "sector = ?, estado = ?"
+                + "WHERE idOrganizacion = ? ";
+
+        try (Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
+
+            consultaPreparada.setString(1, usuario.getNombre());
+            consultaPreparada.setString(2, usuario.getApellidos());
+            consultaPreparada.setString(3, usuario.getContraseña());
+            consultaPreparada.setBoolean(4, usuario.getEsActivo());
+            consultaPreparada.setInt(5, usuario.getIdUsuario());
+
+            int filasAfectadas = consultaPreparada.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                actualizacionExitosa = true;
+            }
+        }catch(Exception e){
+            
+        }
+
+        return actualizacionExitosa;
     }
 
     
