@@ -16,7 +16,6 @@ public class Proyecto {
     private int cupoMaximo;
     private boolean esActivo;
     private Organizacion Organizacion;
-    //Calendarización decidimos que será parte de Documento
 
     public Proyecto (){
     }

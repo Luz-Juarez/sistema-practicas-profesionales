@@ -14,10 +14,10 @@ import spp.utilerias.ConfiguracionBaseDatos;
  */
 public class ConexionBD {
         
-    public static Connection getConexion() throws Exception{
-        String URL = ConfiguracionBaseDatos.get("db.url");
-        String USUARIO = ConfiguracionBaseDatos.get("db.usuario");
-        String CONTRASENIA = ConfiguracionBaseDatos.get("db.contrasenia");
+    public static Connection getConexion() throws SQLException{
+        String URL = ConfiguracionBaseDatos.get("basedatos.url");
+        String USUARIO = ConfiguracionBaseDatos.get("basedatos.usuario");
+        String CONTRASENIA = ConfiguracionBaseDatos.get("basedatos.contrasenia");
         
         return DriverManager.getConnection(URL,USUARIO, CONTRASENIA);
     }

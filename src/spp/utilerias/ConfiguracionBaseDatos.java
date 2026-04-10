@@ -21,7 +21,7 @@ public class ConfiguracionBaseDatos {
                     .getResourceAsStream("recursos/baseDatos.properties");
             
             if(entrada == null){
-                throw new RuntimeException("No se encontr db.properties");
+                throw new RuntimeException("No se encontró db.properties");
             }
             
             propiedades.load(entrada);
@@ -33,4 +33,3 @@ public class ConfiguracionBaseDatos {
         return propiedades.getProperty(key);
     }
 }
-//SistemasPracticasProfesionales/SourcePackeges/recursos/baseDatos.properties

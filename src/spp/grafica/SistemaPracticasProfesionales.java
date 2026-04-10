@@ -4,17 +4,23 @@
  */
 package spp.grafica;
 
+import spp.logicadenegocio.clasesdao.UsuarioDAO;
+import spp.logicadenegocio.clasesdto.Coordinador;
+import spp.logicadenegocio.clasesdto.Practicante;
+import spp.logicadenegocio.clasesdto.Profesor;
+import spp.logicadenegocio.clasesdto.Usuario;
+
 /**
  *
  * @author Luz Fernanda H J
  */
-public class SistemasPracticasProfesionales {
+public class SistemaPracticasProfesionales {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GestionDeSistema gestion = new GestionDeSistema();
+   
     }
     
 }
