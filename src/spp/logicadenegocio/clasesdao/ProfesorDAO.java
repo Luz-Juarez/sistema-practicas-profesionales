@@ -70,13 +70,51 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
 
     @Override
     public boolean eliminarProfesor(String numeroDePersonal) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean eliminacionExitosa = false;
+
+        String consultaSQL = "DELETE FROM Profesor WHERE noPersonal = ?";
+
+        try (Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
+
+            consultaPreparada.setString(1, numeroDePersonal);
+
+            int filasAfectadas = consultaPreparada.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                eliminacionExitosa = true;
+            }
+        }catch(Exception e){
+            
+        }
+
+        return eliminacionExitosa; 
+
     }
 
     @Override
     public boolean actualizarProfesor(Profesor profesor) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean actualizacionExitosa = false;
+
+        String consultaSQL = "UPDATE Profesor SET noPersonal = ?"
+                + "WHERE idUsuario = ?";
+
+        try (Connection conexion = ConexionBD.getConexion();
+             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
+
+            consultaPreparada.setString(1, profesor.getNumeroDePersonal());
+            consultaPreparada.setInt(2, profesor.getIdUsuario());
+
+            int filasAfectadas = consultaPreparada.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                actualizacionExitosa = true;
+            }
+        }catch(Exception e){
+            
+        }
+
+        return actualizacionExitosa;
     }
 
-       
 }
