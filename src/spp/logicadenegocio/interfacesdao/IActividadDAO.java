@@ -12,7 +12,7 @@ import spp.logicadenegocio.clasesdto.Actividad;
  */
 public interface IActividadDAO {
     public boolean registrarActividad(Actividad actividad);
-    public Actividad consultarActividad(int idActividad);
-    public boolean eliminarActividad(int idActividad);
+    public Actividad consultarActividad(String titulo);
+    public boolean eliminarActividad(String titulo);
     public boolean actualizarActividad(Actividad actividad);
 }
