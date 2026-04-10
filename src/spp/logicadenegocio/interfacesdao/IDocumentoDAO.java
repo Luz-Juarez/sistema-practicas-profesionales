@@ -11,6 +11,6 @@ import spp.logicadenegocio.clasesdto.Documento;
  * @author gomes
  */
 public interface IDocumentoDAO {
-    public void registrarDocumento(Documento documento);
-    public Documento consultarDocumento();
+    public boolean registrarDocumento(Documento documento);
+    public Documento consultarDocumento(String nombre);
 }
