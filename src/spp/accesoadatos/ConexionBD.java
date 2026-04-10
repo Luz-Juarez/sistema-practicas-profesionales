@@ -7,6 +7,7 @@ package spp.accesoadatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import spp.utilerias.ConfiguracionBaseDatos;
+import java.sql.SQLException;
 
 /**
  *

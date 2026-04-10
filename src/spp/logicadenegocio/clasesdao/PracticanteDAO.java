@@ -8,7 +8,6 @@ import spp.accesoadatos.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Practicante;
 import spp.logicadenegocio.interfacesdao.IPracticanteDAO;
 
