@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.sql.SQLException;
 import spp.accesoadatos.ConexionBD;
 import spp.logicadenegocio.clasesdto.Actividad;
 import spp.logicadenegocio.interfacesdao.IActividadDAO;
@@ -19,12 +20,14 @@ import spp.logicadenegocio.interfacesdao.IActividadDAO;
 public class ActividadDAO implements IActividadDAO{
 
     @Override
-    public boolean registrarActividad(Actividad actividad) {
+    public boolean registrarActividad(Actividad actividad) throws SQLException {
         boolean registroExitoso = false;
         String consultaSQL = """
-                INSERT INTO Actividad (titulo, descripcion, fechaLimite) VALUES (?, ?, ?)""";
+                INSERT INTO Actividad 
+                (titulo, descripcion, fechaLimite) VALUES (?, ?, ?)""";
         try(Connection conexion = ConexionBD.getConexion();
-            PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
+            PreparedStatement consultaPreparada 
+            = conexion.prepareStatement(consultaSQL);){
             
             consultaPreparada.setString(1,actividad.getTitulo());
             consultaPreparada.setString(2,actividad.getDescripcion());
@@ -32,8 +35,6 @@ public class ActividadDAO implements IActividadDAO{
             
             consultaPreparada.executeUpdate();
             registroExitoso = true;
-        }catch(Exception e){
-            e.printStackTrace();
         }
         return registroExitoso;
     }

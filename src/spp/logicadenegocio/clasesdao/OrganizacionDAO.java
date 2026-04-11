@@ -20,29 +20,28 @@ import spp.logicadenegocio.interfacesdao.IOrganizacionDAO;
 public class OrganizacionDAO implements IOrganizacionDAO{
     
     @Override
-    public boolean registrarOrganizacion(Organizacion organizacion){
+    public boolean registrarOrganizacion(Organizacion organizacion) throws SQLException{
         boolean registroExitoso = false;
         String consultaSQL = """
-                INSERT INTO Organizacion(nombre, direccion, sector, estado) VALUES (?, ?, ?, ?)""";
+                INSERT INTO Organizacion(idOrganizacion, nombre, direccion, sector, estado) VALUES (?, ?, ?, ?, ?)""";
         try (Connection conexion = ConexionBD.getConexion(); 
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
             
-            consultaPreparada.setString(1, organizacion.getNombre());
-            consultaPreparada.setString(2, organizacion.getDireccion());
-            consultaPreparada.setString(3, organizacion.getSector());
-            consultaPreparada.setBoolean(4, organizacion.getEsActivo());
-            
+            consultaPreparada.setInt(1, organizacion.getIdOrganizacion());
+            consultaPreparada.setString(2, organizacion.getNombre());
+            consultaPreparada.setString(3, organizacion.getDireccion());
+            consultaPreparada.setString(4, organizacion.getSector());
+            consultaPreparada.setBoolean(5, organizacion.getEsActivo());
+           
             consultaPreparada.executeUpdate();
             
             registroExitoso = true;
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
+        } 
         return registroExitoso;
     }
     
     @Override
-    public Organizacion consultarOrganizacion(int idOrganizacion) {
+    public Organizacion consultarOrganizacion(int idOrganizacion)throws SQLException {
 
         Organizacion organizacion = null;
         String consultaSQL = "SELECT * FROM ORGANIZACION WHERE idOrganizacion = ?";
@@ -80,7 +79,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
     }
 
     @Override
-    public boolean eliminarOrganizacion(int idOrganizacion) {
+    public boolean eliminarOrganizacion(int idOrganizacion)throws SQLException {
         boolean eliminacionExitosa = false;
 
         String consultaSQL = "DELETE FROM Organizacion WHERE idOrganizacion = ?";
@@ -104,7 +103,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
     }
 
     @Override
-    public boolean actualizarOrganizacion(Organizacion organizacion) {
+    public boolean actualizarOrganizacion(Organizacion organizacion) throws SQLException{
         boolean actualizacionExitosa = false;
 
         String consultaSQL = "UPDATE Organizacion SET nombre = ?, direccion = ?, "

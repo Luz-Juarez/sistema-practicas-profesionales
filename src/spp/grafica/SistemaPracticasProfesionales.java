@@ -4,11 +4,12 @@
  */
 package spp.grafica;
 
-import spp.logicadenegocio.clasesdao.UsuarioDAO;
-import spp.logicadenegocio.clasesdto.Coordinador;
-import spp.logicadenegocio.clasesdto.Practicante;
-import spp.logicadenegocio.clasesdto.Profesor;
-import spp.logicadenegocio.clasesdto.Usuario;
+
+import spp.logicadenegocio.clasesdao.OrganizacionDAO;
+import spp.logicadenegocio.clasesdto.Organizacion;
+import java.sql.SQLException;
+
+
 
 /**
  *
@@ -20,7 +21,24 @@ public class SistemaPracticasProfesionales {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-   
+        OrganizacionDAO organizaciondao = new OrganizacionDAO(); 
+        Organizacion organizacion = new Organizacion();
+        organizacion.setIdOrganizacion(0);
+        organizacion.setNombre("Tiendita");
+        organizacion.setSector("Privado");
+        organizacion.setDireccion("Av.Xalapa");
+        organizacion.setEsActivo(true);
+         
+        try{
+            organizaciondao.registrarOrganizacion(organizacion);
+            
+        }catch(SQLException e){
+            System.out.println("Error al registrar la organizacion");
+        }finally{
+            
+        }
+        
+       
     }
     
 }

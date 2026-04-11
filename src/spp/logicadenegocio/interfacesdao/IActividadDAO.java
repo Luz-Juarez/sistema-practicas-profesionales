@@ -5,14 +5,15 @@
 package spp.logicadenegocio.interfacesdao;
 
 import spp.logicadenegocio.clasesdto.Actividad;
+import java.sql.SQLException; 
 
 /**
  *
  * @author gomes
  */
 public interface IActividadDAO {
-    public boolean registrarActividad(Actividad actividad);
-    public Actividad consultarActividad(String titulo);
-    public boolean eliminarActividad(String titulo);
-    public boolean actualizarActividad(Actividad actividad);
+    public boolean registrarActividad(Actividad actividad) throws SQLException;
+    public Actividad consultarActividad(String titulo) throws SQLException;
+    public boolean eliminarActividad(String titulo)throws SQLException;
+    public boolean actualizarActividad(Actividad actividad)throws SQLException;
 }
