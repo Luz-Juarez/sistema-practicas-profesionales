@@ -23,17 +23,18 @@ public class SistemaPracticasProfesionales {
     public static void main(String[] args) {
         OrganizacionDAO organizaciondao = new OrganizacionDAO(); 
         Organizacion organizacion = new Organizacion();
-        organizacion.setIdOrganizacion(0);
-        organizacion.setNombre("Tiendita");
+        organizacion.setIdOrganizacion(2);
+        organizacion.setNombre("McDonalds");
         organizacion.setSector("Privado");
-        organizacion.setDireccion("Av.Xalapa");
+        organizacion.setDireccion("Av.Orizaba");
         organizacion.setEsActivo(true);
          
         try{
             organizaciondao.registrarOrganizacion(organizacion);
-            
+            System.out.println("Organización registrada correctamente.");
         }catch(SQLException e){
             System.out.println("Error al registrar la organizacion");
+            System.out.println(e);
         }finally{
             
         }
