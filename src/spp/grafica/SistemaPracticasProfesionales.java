@@ -34,7 +34,6 @@ public class SistemaPracticasProfesionales {
             System.out.println("Organización registrada correctamente.");
         }catch(SQLException e){
             System.out.println("Error al registrar la organizacion");
-            System.out.println(e);
         }finally{
             
         }

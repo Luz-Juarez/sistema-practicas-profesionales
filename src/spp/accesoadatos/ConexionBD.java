@@ -20,7 +20,7 @@ public class ConexionBD {
         String USUARIO = ConfiguracionBaseDatos.get("basedatos.usuario");
         String CONTRASENIA = ConfiguracionBaseDatos.get("basedatos.contrasenia");
         
-        return DriverManager.getConnection(URL,USUARIO, CONTRASENIA);
+        return DriverManager.getConnection(URL, USUARIO, CONTRASENIA);
     }
 }
  

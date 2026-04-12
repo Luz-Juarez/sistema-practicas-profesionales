@@ -23,7 +23,8 @@ public class OrganizacionDAO implements IOrganizacionDAO{
     public boolean registrarOrganizacion(Organizacion organizacion) throws SQLException{
         boolean registroExitoso = false;
         String consultaSQL = """
-                INSERT INTO Organizacion(idOrganización, nombre, direccion, sector, estado) VALUES (?, ?, ?, ?, ?)""";
+                INSERT INTO Organizacion(idOrganización, nombre, direccion, sector, estado) 
+                             VALUES (?, ?, ?, ?, ?)""";
         try (Connection conexion = ConexionBD.getConexion(); 
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
             
@@ -36,7 +37,14 @@ public class OrganizacionDAO implements IOrganizacionDAO{
             consultaPreparada.executeUpdate();
             
             registroExitoso = true;
+        }
+        
+        /*
+        catch( nombredelaexception e){
+            throw new nombredelaexception("Mensaje",e); 
+            //excepcion personalizada donde solo se 
         } 
+        */
         return registroExitoso;
     }
     

@@ -8,7 +8,6 @@ import spp.accesoadatos.ConexionBD;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Usuario;
 import java.sql.ResultSet;
 import spp.logicadenegocio.interfacesdao.IUsuarioDAO;
@@ -25,7 +24,8 @@ public class UsuarioDAO implements IUsuarioDAO {
         String consultaSQL = """
                 INSERT INTO Usuario (nombre, apellidos, contrasena, estado) VALUES (?, ?, ?, ?)""";
         try(Connection conexion = ConexionBD.getConexion();
-            PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL,Statement.RETURN_GENERATED_KEYS);) {
+            PreparedStatement consultaPreparada = conexion.prepareStatement
+            (consultaSQL,Statement.RETURN_GENERATED_KEYS);) {
 
             consultaPreparada.setString(1, usuario.getNombre());
             consultaPreparada.setString(2, usuario.getApellidos());
