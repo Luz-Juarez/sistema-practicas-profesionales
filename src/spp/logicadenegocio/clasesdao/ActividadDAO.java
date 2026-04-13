@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import spp.accesoadatos.ConexionBD;
 import spp.logicadenegocio.clasesdto.Actividad;
 import spp.logicadenegocio.interfacesdao.IActividadDAO;
+import spp.utilerias.excepciones.AccesoADatosExcepcion;
 
 /**
  *
@@ -20,13 +21,14 @@ import spp.logicadenegocio.interfacesdao.IActividadDAO;
 public class ActividadDAO implements IActividadDAO{
 
     @Override
-    public boolean registrarActividad(Actividad actividad) throws SQLException {
+    public boolean registrarActividad(Actividad actividad) throws AccesoADatosExcepcion {
         
         boolean registroExitoso = false;
         
         String consultaSQL = """
                 INSERT INTO Actividad 
-                (titulo, descripcion, fechaLimite) VALUES (?, ?, ?)""";
+                (titulo, descripcion, fechaLimite,Profesor_idUsuario) 
+                VALUES (?, ?, ?, ?)""";
         
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada 
@@ -35,9 +37,14 @@ public class ActividadDAO implements IActividadDAO{
             consultaPreparada.setString(1,actividad.getTitulo());
             consultaPreparada.setString(2,actividad.getDescripcion());
             consultaPreparada.setObject(3,actividad.getFechaLimite());
+            consultaPreparada.setInt(4,actividad.getProfesor().getIdUsuario());
             
             consultaPreparada.executeUpdate();
             registroExitoso = true;
+        }catch(SQLException e){
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+        }catch(Exception e){
+            throw new AccesoADatosExcepcion("Error al registrar la actividad",e);
         }
         
     return registroExitoso;

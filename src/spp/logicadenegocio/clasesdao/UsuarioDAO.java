@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import spp.logicadenegocio.clasesdto.Usuario;
 import java.sql.ResultSet;
 import spp.logicadenegocio.interfacesdao.IUsuarioDAO;
+import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import java.sql.SQLException;
 
 /**
  *
@@ -19,12 +21,13 @@ import spp.logicadenegocio.interfacesdao.IUsuarioDAO;
 public class UsuarioDAO implements IUsuarioDAO {
     
     @Override
-    public int registrarUsuario(Usuario usuario){
+    public int registrarUsuario(Usuario usuario) throws AccesoADatosExcepcion{
         
         boolean registroExitoso = false;
         
         String consultaSQL = """
-                INSERT INTO Usuario (nombre, apellidos, contrasena, estado) VALUES (?, ?, ?, ?)""";
+                INSERT INTO Usuario (nombre, apellidos, contrasena, estado) 
+                VALUES (?, ?, ?, ?)""";
         
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement
@@ -47,8 +50,8 @@ public class UsuarioDAO implements IUsuarioDAO {
             registroExitoso = true;
             resultadosConsulta.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
         if(registroExitoso){
             return usuario.getIdUsuario();
