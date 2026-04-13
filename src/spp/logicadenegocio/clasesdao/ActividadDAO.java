@@ -27,7 +27,7 @@ public class ActividadDAO implements IActividadDAO{
         
         String consultaSQL = """
                 INSERT INTO Actividad 
-                (titulo, descripcion, fechaLimite,Profesor_idUsuario) 
+                (titulo, descripcion, fechaLimite, Profesor_idUsuario) 
                 VALUES (?, ?, ?, ?)""";
         
         try(Connection conexion = ConexionBD.getConexion();
@@ -41,10 +41,9 @@ public class ActividadDAO implements IActividadDAO{
             
             consultaPreparada.executeUpdate();
             registroExitoso = true;
+            
         }catch(SQLException e){
             throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
-        }catch(Exception e){
-            throw new AccesoADatosExcepcion("Error al registrar la actividad",e);
         }
         
     return registroExitoso;
@@ -52,7 +51,7 @@ public class ActividadDAO implements IActividadDAO{
     }
 
     @Override
-    public Actividad consultarActividad(String titulo) {
+    public Actividad consultarActividad(String titulo) throws AccesoADatosExcepcion{
         
         Actividad actividad = null;
         
@@ -77,8 +76,8 @@ public class ActividadDAO implements IActividadDAO{
                 
                 }
             }
-        }catch(Exception e){
-            e.printStackTrace();
+        }catch(SQLException e){
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
         
     return actividad;
@@ -86,7 +85,7 @@ public class ActividadDAO implements IActividadDAO{
     }
 
     @Override
-    public boolean eliminarActividad(String titulo) {
+    public boolean eliminarActividad(String titulo) throws AccesoADatosExcepcion {
         
         boolean eliminacionExitosa = false;
         
@@ -102,8 +101,8 @@ public class ActividadDAO implements IActividadDAO{
                 eliminacionExitosa = true;
             }
              
-         }catch(Exception e){
-             
+         }catch(SQLException e){
+             throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
          }
         
     return eliminacionExitosa; 
@@ -111,7 +110,7 @@ public class ActividadDAO implements IActividadDAO{
     }
 
     @Override
-    public boolean actualizarActividad(Actividad actividad) {
+    public boolean actualizarActividad(Actividad actividad) throws AccesoADatosExcepcion{
         
         boolean actualizacionExitosa = false;
         
@@ -130,10 +129,12 @@ public class ActividadDAO implements IActividadDAO{
                 actualizacionExitosa = true;
             }
             
-        }catch(Exception e){
-            
+        }catch(SQLException e){
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
-        return actualizacionExitosa;
+        
+    return actualizacionExitosa;
+    
     }
     
 }

@@ -5,15 +5,15 @@
 package spp.logicadenegocio.interfacesdao;
 
 import spp.logicadenegocio.clasesdto.Organizacion;
-import java.sql.SQLException;
+import spp.utilerias.excepciones.AccesoADatosExcepcion;
 
 /**
  *
  * @author gomes
  */
 public interface IOrganizacionDAO {
-    public boolean registrarOrganizacion(Organizacion organizacion) throws SQLException;
-    public Organizacion consultarOrganizacion(int idOrganizacion)throws SQLException;
-    public boolean eliminarOrganizacion(int idOrganizacion)throws SQLException;
-    public boolean actualizarOrganizacion(Organizacion organizacion)throws SQLException;
+    public boolean registrarOrganizacion(Organizacion organizacion) throws AccesoADatosExcepcion;
+    public Organizacion consultarOrganizacion(int idOrganizacion)throws AccesoADatosExcepcion;
+    public boolean eliminarOrganizacion(int idOrganizacion)throws AccesoADatosExcepcion;
+    public boolean actualizarOrganizacion(Organizacion organizacion)throws AccesoADatosExcepcion;
 }

@@ -13,7 +13,7 @@ import spp.utilerias.excepciones.AccesoADatosExcepcion;
  */
 public interface IProfesorDAO {
     public boolean registrarProfesor(Profesor profesor)throws AccesoADatosExcepcion;
-    public Profesor consultarProfesor(String numeroDePersonal);
-    public boolean eliminarProfesor(String numeroDePersonal);
-    public boolean actualizarProfesor(Profesor profesor);
+    public Profesor consultarProfesor(String numeroDePersonal)throws AccesoADatosExcepcion;
+    public boolean eliminarProfesor(String numeroDePersonal)throws AccesoADatosExcepcion;
+    public boolean actualizarProfesor(Profesor profesor)throws AccesoADatosExcepcion;
 }

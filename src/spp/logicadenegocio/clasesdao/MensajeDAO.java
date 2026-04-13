@@ -6,6 +6,7 @@ package spp.logicadenegocio.clasesdao;
 
 import spp.logicadenegocio.clasesdto.Mensaje;
 import spp.logicadenegocio.interfacesdao.IMensajeDAO;
+import spp.utilerias.excepciones.AccesoADatosExcepcion;
 
 /**
  *
@@ -14,13 +15,12 @@ import spp.logicadenegocio.interfacesdao.IMensajeDAO;
 public class MensajeDAO implements IMensajeDAO{
 
     @Override
-    public boolean registrarMensaje(Mensaje mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean registrarMensaje(Mensaje mensaje) throws AccesoADatosExcepcion{
+        throw new UnsupportedOperationException("No implementada aún."); 
     }
 
     @Override
-    public Mensaje consultarMensaje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Mensaje consultarMensaje() throws AccesoADatosExcepcion{
+        throw new UnsupportedOperationException("No implementada aún."); 
     }
-    
 }

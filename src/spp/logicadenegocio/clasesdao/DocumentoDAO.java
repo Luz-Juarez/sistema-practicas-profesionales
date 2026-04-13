@@ -7,10 +7,12 @@ package spp.logicadenegocio.clasesdao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import spp.accesoadatos.ConexionBD;
 import spp.logicadenegocio.clasesdto.Documento;
 import spp.logicadenegocio.clasesdto.Usuario;
 import spp.logicadenegocio.interfacesdao.IDocumentoDAO;
+import spp.utilerias.excepciones.AccesoADatosExcepcion;
 
 /**
  *
@@ -19,7 +21,7 @@ import spp.logicadenegocio.interfacesdao.IDocumentoDAO;
 public class DocumentoDAO implements IDocumentoDAO {
 
     @Override
-    public boolean registrarDocumento(Documento documento) {
+    public boolean registrarDocumento(Documento documento) throws AccesoADatosExcepcion{
         
         boolean registroExitoso = false;
         
@@ -39,15 +41,15 @@ public class DocumentoDAO implements IDocumentoDAO {
             
             registroExitoso = true;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
     return registroExitoso;
     
     }
 
     @Override
-    public Documento consultarDocumento(String nombre) {
+    public Documento consultarDocumento(String nombre) throws AccesoADatosExcepcion{
         
         Documento documento = null;
         
@@ -75,8 +77,8 @@ public class DocumentoDAO implements IDocumentoDAO {
 
             conexion.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return documento;

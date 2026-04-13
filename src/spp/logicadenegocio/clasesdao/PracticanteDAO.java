@@ -8,8 +8,10 @@ import spp.accesoadatos.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Practicante;
 import spp.logicadenegocio.interfacesdao.IPracticanteDAO;
+import spp.utilerias.excepciones.AccesoADatosExcepcion;
 
 /**
  *
@@ -18,7 +20,7 @@ import spp.logicadenegocio.interfacesdao.IPracticanteDAO;
 public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
     
     @Override
-    public boolean registrarPracticante(Practicante practicante){
+    public boolean registrarPracticante(Practicante practicante)throws AccesoADatosExcepcion{
         
         boolean registroExitoso = false;
         
@@ -42,15 +44,15 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             
             registroExitoso = true;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
     return registroExitoso;
     
     }
      
     @Override
-    public Practicante consultarPracticante(String matricula) {
+    public Practicante consultarPracticante(String matricula)throws AccesoADatosExcepcion{
 
         Practicante practicante = null;
         
@@ -72,8 +74,8 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
 
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return practicante;
@@ -81,7 +83,7 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
     }
 
     @Override
-    public boolean eliminarPracticante(String matricula) {
+    public boolean eliminarPracticante(String matricula)throws AccesoADatosExcepcion {
         
         boolean eliminacionExitosa = false;
 
@@ -97,8 +99,8 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             if (filasAfectadas > 0) {
                 eliminacionExitosa = true;
             }
-        }catch(Exception e){
-            
+        }catch(SQLException e){
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return eliminacionExitosa; 
@@ -106,7 +108,7 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
     }
 
     @Override
-    public boolean actualizarPracticante(Practicante practicante) {
+    public boolean actualizarPracticante(Practicante practicante)throws AccesoADatosExcepcion {
         
         boolean actualizacionExitosa = false;
 
@@ -129,8 +131,8 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             if (filasAfectadas > 0) {
                 actualizacionExitosa = true;
             }
-        }catch(Exception e){
-            
+        }catch(SQLException e){
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return actualizacionExitosa;

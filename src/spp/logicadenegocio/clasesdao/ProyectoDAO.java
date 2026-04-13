@@ -8,9 +8,11 @@ import spp.accesoadatos.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Organizacion;
 import spp.logicadenegocio.clasesdto.Proyecto;
 import spp.logicadenegocio.interfacesdao.IProyectoDAO;
+import spp.utilerias.excepciones.AccesoADatosExcepcion;
 
 
 /**
@@ -20,7 +22,7 @@ import spp.logicadenegocio.interfacesdao.IProyectoDAO;
 public class ProyectoDAO implements IProyectoDAO {
     
     @Override
-    public boolean registrarProyecto(Proyecto proyecto){
+    public boolean registrarProyecto(Proyecto proyecto)throws AccesoADatosExcepcion{
         
         boolean registroExitoso = false;
         
@@ -43,15 +45,15 @@ public class ProyectoDAO implements IProyectoDAO {
             
             registroExitoso = true;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
     return registroExitoso;
     
     }
        
     @Override
-    public Proyecto consultarProyecto(int idProyecto) {
+    public Proyecto consultarProyecto(int idProyecto)throws AccesoADatosExcepcion {
         
         Proyecto proyecto = null;
         
@@ -88,8 +90,8 @@ public class ProyectoDAO implements IProyectoDAO {
 
             conexion.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return proyecto;
@@ -98,7 +100,7 @@ public class ProyectoDAO implements IProyectoDAO {
 
 
     @Override
-    public boolean eliminarProyecto(int idProyecto) {
+    public boolean eliminarProyecto(int idProyecto)throws AccesoADatosExcepcion {
         
         boolean eliminacionExitosa = false;
 
@@ -115,8 +117,8 @@ public class ProyectoDAO implements IProyectoDAO {
                 eliminacionExitosa = true;
             }
             
-        }catch(Exception e){
-            
+        }catch(SQLException e){
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return eliminacionExitosa; 
@@ -124,7 +126,7 @@ public class ProyectoDAO implements IProyectoDAO {
     }
 
     @Override
-    public boolean actualizarProyecto(Proyecto proyecto) {
+    public boolean actualizarProyecto(Proyecto proyecto)throws AccesoADatosExcepcion {
         
         boolean actualizacionExitosa = false;
 
@@ -148,8 +150,8 @@ public class ProyectoDAO implements IProyectoDAO {
             if (filasAfectadas > 0) {
                 actualizacionExitosa = true;
             }
-        }catch(Exception e){
-            
+        }catch(SQLException e){
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return actualizacionExitosa;

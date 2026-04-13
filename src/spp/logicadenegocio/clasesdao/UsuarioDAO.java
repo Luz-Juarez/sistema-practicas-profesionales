@@ -53,6 +53,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         } catch (SQLException e) {
             throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
+        
         if(registroExitoso){
             return usuario.getIdUsuario();
         }else{
@@ -61,7 +62,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
     
     @Override
-    public Usuario consultarUsuario(int idUsuario) {
+    public Usuario consultarUsuario(int idUsuario)throws AccesoADatosExcepcion {
 
         Usuario usuario = null;
         
@@ -91,15 +92,15 @@ public class UsuarioDAO implements IUsuarioDAO {
 
             } 
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return usuario;
 }
 
     @Override
-    public boolean eliminarUsuario(int idUsuario) {
+    public boolean eliminarUsuario(int idUsuario)throws AccesoADatosExcepcion {
         
         boolean eliminacionExitosa = false;
 
@@ -116,8 +117,8 @@ public class UsuarioDAO implements IUsuarioDAO {
                 eliminacionExitosa = true;
             }
             
-        }catch(Exception e){
-            
+        }catch(SQLException e){
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return eliminacionExitosa; 
@@ -125,7 +126,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public boolean actualizarUsuario(Usuario usuario) {
+    public boolean actualizarUsuario(Usuario usuario)throws AccesoADatosExcepcion {
         
         boolean actualizacionExitosa = false;
 
@@ -148,8 +149,8 @@ public class UsuarioDAO implements IUsuarioDAO {
                 actualizacionExitosa = true;
             }
             
-        }catch(Exception e){
-            
+        }catch(SQLException e){
+            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return actualizacionExitosa;

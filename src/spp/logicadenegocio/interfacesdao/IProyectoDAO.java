@@ -5,14 +5,15 @@
 package spp.logicadenegocio.interfacesdao;
 
 import spp.logicadenegocio.clasesdto.Proyecto;
+import spp.utilerias.excepciones.AccesoADatosExcepcion;
 
 /**
  *
  * @author gomes
  */
 public interface IProyectoDAO {
-    public boolean registrarProyecto(Proyecto proyecto);
-    public Proyecto consultarProyecto(int idProyecto);
-    public boolean eliminarProyecto(int idProyecto);
-    public boolean actualizarProyecto(Proyecto proyecto);
+    public boolean registrarProyecto(Proyecto proyecto)throws AccesoADatosExcepcion;
+    public Proyecto consultarProyecto(int idProyecto)throws AccesoADatosExcepcion;
+    public boolean eliminarProyecto(int idProyecto)throws AccesoADatosExcepcion;
+    public boolean actualizarProyecto(Proyecto proyecto)throws AccesoADatosExcepcion;
 }

@@ -13,7 +13,7 @@ import spp.utilerias.excepciones.AccesoADatosExcepcion;
  */
 public interface IUsuarioDAO {
     public int registrarUsuario(Usuario usuario)throws AccesoADatosExcepcion;
-    public Usuario consultarUsuario(int idUsuario);
-    public boolean eliminarUsuario(int idUsuario);
-    public boolean actualizarUsuario(Usuario usuario);
+    public Usuario consultarUsuario(int idUsuario)throws AccesoADatosExcepcion;
+    public boolean eliminarUsuario(int idUsuario)throws AccesoADatosExcepcion;
+    public boolean actualizarUsuario(Usuario usuario)throws AccesoADatosExcepcion;
 }
