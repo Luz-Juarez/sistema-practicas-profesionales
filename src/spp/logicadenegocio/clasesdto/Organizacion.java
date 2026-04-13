@@ -9,6 +9,7 @@ package spp.logicadenegocio.clasesdto;
  * @author Luz Fernanda H J
  */
 public class Organizacion {
+    
     private int idOrganizacion;
     private String nombre; 
     private String sector;
@@ -18,12 +19,15 @@ public class Organizacion {
     public Organizacion() {
     }
    
-    public Organizacion(int idOrganizacion, String nombre, String sector, String direccion, boolean esActivo) {
+    public Organizacion(int idOrganizacion, String nombre, String sector, 
+           String direccion, boolean esActivo) {
+        
         this.idOrganizacion = idOrganizacion;
         this.nombre = nombre;
         this.sector = sector;
         this.direccion = direccion;
         this.esActivo = esActivo;
+        
     }
 
     public int getIdOrganizacion() {
@@ -65,6 +69,5 @@ public class Organizacion {
     public void setEsActivo(boolean esActivo) {
         this.esActivo = esActivo;
     }
-    
     
 }

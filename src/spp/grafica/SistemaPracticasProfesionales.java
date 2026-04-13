@@ -21,8 +21,10 @@ public class SistemaPracticasProfesionales {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         OrganizacionDAO organizaciondao = new OrganizacionDAO(); 
         Organizacion organizacion = new Organizacion();
+        
         organizacion.setIdOrganizacion(2);
         organizacion.setNombre("McDonalds");
         organizacion.setSector("Privado");
@@ -37,7 +39,6 @@ public class SistemaPracticasProfesionales {
         }finally{
             
         }
-        
        
     }
     

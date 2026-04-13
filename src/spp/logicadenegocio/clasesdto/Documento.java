@@ -9,6 +9,7 @@ package spp.logicadenegocio.clasesdto;
  * @author gomes
  */
 public class Documento {
+    
     private int idDocumento;
     private String nombre;
     private String tipo;
@@ -19,11 +20,13 @@ public class Documento {
     }
 
     public Documento(int idDocumento, String nombre, String tipo, String ruta, Usuario usuario) {
+        
         this.idDocumento = idDocumento;
         this.nombre = nombre;
         this.tipo = tipo;
         this.ruta = ruta;
         this.usuario = usuario;
+        
     }
 
     public int getIdDocumento() {

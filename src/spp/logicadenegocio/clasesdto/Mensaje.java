@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
  * @author Luz Fernanda H J
  */
 public class Mensaje {
+    
     private int idMensaje; 
     private String asunto; 
     private String cuerpo;
@@ -19,10 +20,12 @@ public class Mensaje {
     }
 
     public Mensaje(int idMensaje, String asunto, String cuerpo, LocalDateTime fecha) {
+        
         this.idMensaje = idMensaje;
         this.asunto = asunto;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
+        
     }
 
     public int getIdMensaje() {

@@ -20,9 +20,12 @@ public class UsuarioDAO implements IUsuarioDAO {
     
     @Override
     public int registrarUsuario(Usuario usuario){
+        
         boolean registroExitoso = false;
+        
         String consultaSQL = """
                 INSERT INTO Usuario (nombre, apellidos, contrasena, estado) VALUES (?, ?, ?, ?)""";
+        
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement
             (consultaSQL,Statement.RETURN_GENERATED_KEYS);) {
@@ -58,6 +61,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     public Usuario consultarUsuario(int idUsuario) {
 
         Usuario usuario = null;
+        
         String consultaSQL = "SELECT idUsuario, nombre, apellidos, estado FROM USUARIO WHERE idUsuario = ?";
 
         try(Connection conexion = ConexionBD.getConexion();
@@ -93,6 +97,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public boolean eliminarUsuario(int idUsuario) {
+        
         boolean eliminacionExitosa = false;
 
         String consultaSQL = "DELETE FROM Usuario WHERE idUsuario = ?";
@@ -107,20 +112,22 @@ public class UsuarioDAO implements IUsuarioDAO {
             if (filasAfectadas > 0) {
                 eliminacionExitosa = true;
             }
+            
         }catch(Exception e){
             
         }
 
-        return eliminacionExitosa; 
+    return eliminacionExitosa; 
 
     }
 
     @Override
     public boolean actualizarUsuario(Usuario usuario) {
+        
         boolean actualizacionExitosa = false;
 
         String consultaSQL = "UPDATE Usuario SET nombre = ?, apellidos = ?, "
-                + "contraseña = ?, estado = ?"
+                + "contrasena = ?, estado = ?"
                 + "WHERE idUsuario = ?";
 
         try (Connection conexion = ConexionBD.getConexion();
@@ -137,12 +144,13 @@ public class UsuarioDAO implements IUsuarioDAO {
             if (filasAfectadas > 0) {
                 actualizacionExitosa = true;
             }
+            
         }catch(Exception e){
             
         }
 
-        return actualizacionExitosa;
-    }
-
+    return actualizacionExitosa;
     
+    }
+ 
 }

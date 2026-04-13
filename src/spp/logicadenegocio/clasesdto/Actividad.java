@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
  * @author Luz Fernanda H J
  */
 public class Actividad {
+    
     private int idActividad;
     private String titulo;
     private String descripcion;
@@ -23,11 +24,13 @@ public class Actividad {
     
     public Actividad(int idActividad, String titulo, String descripcion, 
             LocalDateTime fechaLimite, Profesor profesor){
+        
         this.idActividad = idActividad; 
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaLimite = fechaLimite;
         this.profesor = profesor;
+        
     }
     
     public int getIdActividad(){

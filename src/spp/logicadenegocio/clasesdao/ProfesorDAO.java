@@ -20,9 +20,12 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
     
     @Override
     public boolean registrarProfesor(Profesor profesor){
+        
         boolean registroExitoso = false;
+        
         String consultaSQL = """
                 INSERT INTO Profesor (idUsuario, noPersonal) VALUES (?, ?)""";
+        
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
 
@@ -43,6 +46,7 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
     public Profesor consultarProfesor(String numeroDePersonal) {
 
          Profesor profesor = null;
+         
          String consultaSQL = "SELECT idUsuario, noPersonal FROM PROFESOR WHERE noPersonal = ?";
 
          try(Connection conexion = ConexionBD.getConexion();
@@ -65,11 +69,13 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
              e.printStackTrace();
          }
 
-         return profesor;
+    return profesor;
+    
     }
 
     @Override
     public boolean eliminarProfesor(String numeroDePersonal) {
+        
         boolean eliminacionExitosa = false;
 
         String consultaSQL = "DELETE FROM Profesor WHERE noPersonal = ?";
@@ -84,16 +90,18 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
             if (filasAfectadas > 0) {
                 eliminacionExitosa = true;
             }
+            
         }catch(Exception e){
             
         }
 
-        return eliminacionExitosa; 
+    return eliminacionExitosa; 
 
     }
 
     @Override
     public boolean actualizarProfesor(Profesor profesor) {
+        
         boolean actualizacionExitosa = false;
 
         String consultaSQL = "UPDATE Profesor SET noPersonal = ?"
@@ -114,7 +122,8 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
             
         }
 
-        return actualizacionExitosa;
+    return actualizacionExitosa;
+    
     }
 
 }

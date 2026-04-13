@@ -11,22 +11,25 @@ import java.util.Date;
  * @author Luz Fernanda H J
  */
 public class Practicante extends Usuario {
+    
     private String matricula; 
     private String genero;
     private Date fechaNacimiento;
     private boolean hablaLenguaIndigena;
-    //Horario decidimos que será parte de Documento
 
     public Practicante() {
     }
 
     public Practicante(int idUsuario, String nombre, String apellidos, String contraseña,
-            boolean esActivo,String matricula,String genero, Date fechaNacimiento, boolean hablaLenguaIndigena) {
+           boolean esActivo,String matricula,String genero, Date fechaNacimiento, 
+           boolean hablaLenguaIndigena) {
+        
         super(idUsuario, nombre, apellidos, contraseña,esActivo);
         this.matricula = matricula;
         this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
         this.hablaLenguaIndigena = hablaLenguaIndigena;
+        
     }
 
     public String getMatricula() {

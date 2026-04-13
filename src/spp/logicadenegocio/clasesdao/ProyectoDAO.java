@@ -21,11 +21,14 @@ public class ProyectoDAO implements IProyectoDAO {
     
     @Override
     public boolean registrarProyecto(Proyecto proyecto){
+        
         boolean registroExitoso = false;
+        
         String consultaSQL = """
                 INSERT INTO Proyecto 
                 (nombre, descripcion, nombreResponsable, cupoMaximo, estado, 
                   Organizacion_idOrganizacion) VALUES (?, ?, ?, ?, ?, ?)""";
+        
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
 
@@ -43,13 +46,16 @@ public class ProyectoDAO implements IProyectoDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return registroExitoso;
+    return registroExitoso;
+    
     }
        
     @Override
     public Proyecto consultarProyecto(int idProyecto) {
+        
         Proyecto proyecto = null;
-         String consultaSQL = "SELECT * FROM PROYECTO WHERE idProyecto = ?";
+        
+         String consultaSQL = "SELECT * FROM Proyecto WHERE idProyecto = ?";
 
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
@@ -66,14 +72,16 @@ public class ProyectoDAO implements IProyectoDAO {
                 proyecto.setDescripcion(resultadosConsulta.getString("descripcion"));
                 proyecto.setNombreResponsable(resultadosConsulta.getString("nombreResponsable"));
                 proyecto.setCupoMaximo(resultadosConsulta.getInt("cupoMaximo"));
+                
                 int esActivo = resultadosConsulta.getInt("estado");
                 if (esActivo == 1) {
                     proyecto.setEsActivo(true);
                 } else {
                     proyecto.setEsActivo(false);
                 }
+                
                 Organizacion organizacion = new Organizacion();
-                organizacion.setIdOrganizacion(resultadosConsulta.getInt("idOrganizacion"));
+                organizacion.setIdOrganizacion(resultadosConsulta.getInt("Organizacion_idOrganizacion"));
 
                 proyecto.setOrganizacion(organizacion);
             }
@@ -84,12 +92,14 @@ public class ProyectoDAO implements IProyectoDAO {
             e.printStackTrace();
         }
 
-        return proyecto;
+    return proyecto;
+        
     }
 
 
     @Override
     public boolean eliminarProyecto(int idProyecto) {
+        
         boolean eliminacionExitosa = false;
 
         String consultaSQL = "DELETE FROM PROYECTO WHERE idProyecto = ?";
@@ -104,20 +114,22 @@ public class ProyectoDAO implements IProyectoDAO {
             if (filasAfectadas > 0) {
                 eliminacionExitosa = true;
             }
+            
         }catch(Exception e){
             
         }
 
-        return eliminacionExitosa; 
+    return eliminacionExitosa; 
 
     }
 
     @Override
     public boolean actualizarProyecto(Proyecto proyecto) {
+        
         boolean actualizacionExitosa = false;
 
         String consultaSQL = "UPDATE PROYECTO SET nombre = ?, descripcion = ?, "
-                + "nombreResponsable = ?, cupoMaximo = ?, estado = ?, idOrganizacion = ? "
+                + "nombreResponsable = ?, cupoMaximo = ?, estado = ?, Organizacion_idOrganizacion = ? "
                 + "WHERE idProyecto = ? ";
 
         try (Connection conexion = ConexionBD.getConexion();
@@ -140,7 +152,8 @@ public class ProyectoDAO implements IProyectoDAO {
             
         }
 
-        return actualizacionExitosa;
-        }
+    return actualizacionExitosa;
+        
+    }
 
 }

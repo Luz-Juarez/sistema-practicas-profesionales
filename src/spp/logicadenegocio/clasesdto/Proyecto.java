@@ -9,6 +9,7 @@ package spp.logicadenegocio.clasesdto;
  * @author Luz Fernanda H J
  */
 public class Proyecto {
+    
     private int idProyecto; 
     private String nombre; 
     private String descripcion;
@@ -20,7 +21,9 @@ public class Proyecto {
     public Proyecto (){
     }
     
-    public Proyecto(int idProyecto, String nombre, String descripcion, String nombreResponsable, int cupoMaximo, boolean esActivo, Organizacion Organizacion) {
+    public Proyecto(int idProyecto, String nombre, String descripcion, String nombreResponsable,
+           int cupoMaximo, boolean esActivo, Organizacion Organizacion) {
+        
         this.idProyecto = idProyecto;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -28,6 +31,7 @@ public class Proyecto {
         this.cupoMaximo = cupoMaximo;
         this.esActivo = esActivo;
         this.Organizacion = Organizacion;
+        
     }
 
     public int getIdProyecto() {
@@ -85,7 +89,5 @@ public class Proyecto {
     public void setOrganizacion(Organizacion Organizacion) {
         this.Organizacion = Organizacion;
     }
-    
-    
     
 }

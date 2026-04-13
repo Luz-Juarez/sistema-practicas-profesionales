@@ -16,6 +16,7 @@ import java.sql.SQLException;
 public class ConexionBD {
         
     public static Connection getConexion() throws SQLException{
+        
         String URL = ConfiguracionBaseDatos.get("basedatos.url");
         String USUARIO = ConfiguracionBaseDatos.get("basedatos.usuario");
         String CONTRASENIA = ConfiguracionBaseDatos.get("basedatos.contrasenia");

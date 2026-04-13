@@ -20,10 +20,13 @@ public class DocumentoDAO implements IDocumentoDAO {
 
     @Override
     public boolean registrarDocumento(Documento documento) {
+        
         boolean registroExitoso = false;
+        
         String consultaSQL = """
                 INSERT INTO Documento 
                 (nombre, tipo, ruta, Usuario_idUsuario) VALUES (?, ?, ?, ?)""";
+        
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
 
@@ -39,12 +42,15 @@ public class DocumentoDAO implements IDocumentoDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return registroExitoso;
+    return registroExitoso;
+    
     }
 
     @Override
     public Documento consultarDocumento(String nombre) {
+        
         Documento documento = null;
+        
         String consultaSQL = "SELECT * FROM Documento WHERE nombre = ?";
 
         try(Connection conexion = ConexionBD.getConexion();
@@ -73,7 +79,8 @@ public class DocumentoDAO implements IDocumentoDAO {
             e.printStackTrace();
         }
 
-        return documento;
+    return documento;
+    
     }
     
 }

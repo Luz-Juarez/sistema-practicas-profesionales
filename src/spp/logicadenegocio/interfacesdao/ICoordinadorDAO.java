@@ -4,6 +4,7 @@
  */
 package spp.logicadenegocio.interfacesdao;
 
+import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Coordinador;
 
 /**
@@ -11,8 +12,8 @@ import spp.logicadenegocio.clasesdto.Coordinador;
  * @author gomes
  */
 public interface ICoordinadorDAO {
-    public boolean registrarCoordinador(Coordinador coordinador);
-    public Coordinador consultarCoordinador(String numeroDePersonal);
-    public boolean eliminarCoordinador(String numeroDePersonal);
-    public boolean actualizarCoordinador(Coordinador coordinador);       
+    public boolean registrarCoordinador(Coordinador coordinador)throws SQLException;
+    public Coordinador consultarCoordinador(String numeroDePersonal)throws SQLException;
+    public boolean eliminarCoordinador(String numeroDePersonal)throws SQLException;
+    public boolean actualizarCoordinador(Coordinador coordinador)throws SQLException;       
 }

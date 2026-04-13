@@ -9,6 +9,7 @@ package spp.logicadenegocio.clasesdto;
  * @author Luz Fernanda H J
  */
 public class Usuario {
+    
     private int idUsuario;
     private String nombre;
     private String apellidos;
@@ -18,12 +19,15 @@ public class Usuario {
     public Usuario(){
     }
     
-    public Usuario(int idUsuario, String nombre, String apellidos, String contraseña, boolean esActivo) {
+    public Usuario(int idUsuario, String nombre, String apellidos, 
+           String contraseña, boolean esActivo) {
+        
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.contraseña = contraseña;
         this.esActivo=esActivo;
+        
     }
     
     public int getIdUsuario() {
@@ -65,6 +69,5 @@ public class Usuario {
     public void setEsActivo(boolean esActivo) {
         this.esActivo = esActivo;
     }
-    
-    
+       
 }

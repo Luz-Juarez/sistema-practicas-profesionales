@@ -21,10 +21,13 @@ public class ActividadDAO implements IActividadDAO{
 
     @Override
     public boolean registrarActividad(Actividad actividad) throws SQLException {
+        
         boolean registroExitoso = false;
+        
         String consultaSQL = """
                 INSERT INTO Actividad 
                 (titulo, descripcion, fechaLimite) VALUES (?, ?, ?)""";
+        
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada 
             = conexion.prepareStatement(consultaSQL);){
@@ -36,21 +39,28 @@ public class ActividadDAO implements IActividadDAO{
             consultaPreparada.executeUpdate();
             registroExitoso = true;
         }
-        return registroExitoso;
+        
+    return registroExitoso;
+    
     }
 
     @Override
     public Actividad consultarActividad(String titulo) {
         
         Actividad actividad = null;
-        String consultaSQL = "SELECT idActividad, titulo, descripcion, fechaLimite FROM Actividad WHERE titulo = ? ";
+        
+        String consultaSQL = "SELECT idActividad, titulo, descripcion, fechaLimite "
+                + "FROM Actividad WHERE titulo = ? ";
+        
         
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
             
             consultaPreparada.setString(1,titulo); 
+            
             try(ResultSet resultadosConsulta = consultaPreparada.executeQuery();){
                 if(resultadosConsulta.next() ){
+                    
                 actividad = new Actividad();
                 
                 actividad.setIdActividad(resultadosConsulta.getInt("idActividad"));
@@ -63,17 +73,23 @@ public class ActividadDAO implements IActividadDAO{
         }catch(Exception e){
             e.printStackTrace();
         }
-        return actividad; 
+        
+    return actividad;
+    
     }
 
     @Override
     public boolean eliminarActividad(String titulo) {
+        
         boolean eliminacionExitosa = false;
+        
         String consultaSQL = "DELETE FROM Actividad WHERE titulo = ?";
+        
          try(Connection conexion = ConexionBD.getConexion();
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
             
             consultaPreparada.setString(1, titulo);
+            
             int filasAfectadas = consultaPreparada.executeUpdate();
             if(filasAfectadas > 0 ){
                 eliminacionExitosa = true;
@@ -83,14 +99,18 @@ public class ActividadDAO implements IActividadDAO{
              
          }
         
-        return eliminacionExitosa; 
+    return eliminacionExitosa; 
+    
     }
 
     @Override
     public boolean actualizarActividad(Actividad actividad) {
+        
         boolean actualizacionExitosa = false;
-        String consultaSQL = "UPDATE Actividad SET titulo = ?, descripcion = ?,"
+        
+        String consultaSQL = "UPDATE Actividad SET titulo = ?, descripcion = ?, "
                 + "fechaLimite = ?  WHERE titulo = ?";
+        
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
             

@@ -19,10 +19,13 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
     
     @Override
     public boolean registrarPracticante(Practicante practicante){
+        
         boolean registroExitoso = false;
+        
         String consultaSQL = """
                 INSERT INTO Practicante (idUsuario, matricula, genero, lenguaIndigena, fechaNacimiento) 
                              VALUES (?, ?, ?, ?, ?)""";
+        
         try (Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
 
@@ -42,14 +45,17 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return registroExitoso;
+    return registroExitoso;
+    
     }
      
     @Override
     public Practicante consultarPracticante(String matricula) {
 
         Practicante practicante = null;
-        String consultaSQL = "SELECT idUsuario, matricula FROM PRACTICANTE WHERE matricula = ?";
+        
+        String consultaSQL = "SELECT idUsuario, matricula FROM Practicante WHERE matricula = ?";
+        
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
             
@@ -70,11 +76,13 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             e.printStackTrace();
         }
 
-        return practicante;
+    return practicante;
+    
     }
 
     @Override
     public boolean eliminarPracticante(String matricula) {
+        
         boolean eliminacionExitosa = false;
 
         String consultaSQL = "DELETE FROM Practicante WHERE matricula = ?";
@@ -93,16 +101,17 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             
         }
 
-        return eliminacionExitosa; 
+    return eliminacionExitosa; 
 
     }
 
     @Override
     public boolean actualizarPracticante(Practicante practicante) {
+        
         boolean actualizacionExitosa = false;
 
         String consultaSQL = "UPDATE Practicante SET matricula = ?, genero = ?, "
-                + "lenguaIndigena = ?, fechaNacimiento = ?"
+                + "lenguaIndigena = ?, fechaNacimiento = ? "
                 + "WHERE idUsuario = ?";
 
         try (Connection conexion = ConexionBD.getConexion();
@@ -124,8 +133,8 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             
         }
 
-        return actualizacionExitosa;
-    }
-
+    return actualizacionExitosa;
     
+    }
+   
 }
