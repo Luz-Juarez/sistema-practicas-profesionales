@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 /**
  *
  * @author gomes
@@ -20,7 +20,7 @@ import spp.utilerias.excepciones.AccesoADatosExcepcion;
 public class CoordinadorDAO implements ICoordinadorDAO {
 
     @Override
-    public boolean registrarCoordinador(Coordinador coordinador) throws AccesoADatosExcepcion{ 
+    public boolean registrarCoordinador(Coordinador coordinador) throws OperacionesDeDaoExcepcion{ 
         
         boolean registroExitoso = false;
         
@@ -34,7 +34,7 @@ public class CoordinadorDAO implements ICoordinadorDAO {
             registroExitoso=true;
             
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         
     return registroExitoso;
@@ -42,7 +42,7 @@ public class CoordinadorDAO implements ICoordinadorDAO {
     }
 
     @Override
-    public Coordinador consultarCoordinador(String numeroDePersonal) throws AccesoADatosExcepcion{
+    public Coordinador consultarCoordinador(String numeroDePersonal) throws OperacionesDeDaoExcepcion{
         
         Coordinador coordinador = null;
         
@@ -64,14 +64,14 @@ public class CoordinadorDAO implements ICoordinadorDAO {
             }
             
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
     return coordinador;
     
     }
     
     @Override
-    public boolean eliminarCoordinador(String numeroDePersonal) throws AccesoADatosExcepcion{
+    public boolean eliminarCoordinador(String numeroDePersonal) throws OperacionesDeDaoExcepcion{
         
         boolean eliminacionExitosa = false;
         
@@ -88,7 +88,7 @@ public class CoordinadorDAO implements ICoordinadorDAO {
             }
             
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         
     return eliminacionExitosa;
@@ -96,7 +96,7 @@ public class CoordinadorDAO implements ICoordinadorDAO {
     }
 
     @Override
-    public boolean actualizarCoordinador(Coordinador coordinador) throws AccesoADatosExcepcion {
+    public boolean actualizarCoordinador(Coordinador coordinador) throws OperacionesDeDaoExcepcion {
         
         boolean actualizacionExitosa = false;
         
@@ -112,7 +112,7 @@ public class CoordinadorDAO implements ICoordinadorDAO {
                 actualizacionExitosa = true;
             }
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         
     return actualizacionExitosa;

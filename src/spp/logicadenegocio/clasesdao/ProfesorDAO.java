@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Profesor;
 import spp.logicadenegocio.interfacesdao.IProfesorDAO;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
 /**
  *
@@ -20,7 +20,7 @@ import spp.utilerias.excepciones.AccesoADatosExcepcion;
 public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
     
     @Override
-    public boolean registrarProfesor(Profesor profesor)throws AccesoADatosExcepcion{
+    public boolean registrarProfesor(Profesor profesor)throws OperacionesDeDaoExcepcion{
         
         boolean registroExitoso = false;
         
@@ -38,13 +38,13 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
             registroExitoso = true;
             
         } catch (SQLException e) {
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         return registroExitoso;
     }
     
     @Override
-    public Profesor consultarProfesor(String numeroDePersonal)throws AccesoADatosExcepcion {
+    public Profesor consultarProfesor(String numeroDePersonal)throws OperacionesDeDaoExcepcion {
 
          Profesor profesor = null;
          
@@ -67,7 +67,7 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
              }
 
          } catch (SQLException e) {
-             throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+             throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
          }
 
     return profesor;
@@ -75,7 +75,7 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
     }
 
     @Override
-    public boolean eliminarProfesor(String numeroDePersonal)throws AccesoADatosExcepcion {
+    public boolean eliminarProfesor(String numeroDePersonal)throws OperacionesDeDaoExcepcion {
         
         boolean eliminacionExitosa = false;
 
@@ -93,7 +93,7 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
             }
             
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return eliminacionExitosa; 
@@ -101,7 +101,7 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
     }
 
     @Override
-    public boolean actualizarProfesor(Profesor profesor)throws AccesoADatosExcepcion {
+    public boolean actualizarProfesor(Profesor profesor)throws OperacionesDeDaoExcepcion {
         
         boolean actualizacionExitosa = false;
 
@@ -120,7 +120,7 @@ public class ProfesorDAO extends UsuarioDAO implements IProfesorDAO{
                 actualizacionExitosa = true;
             }
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return actualizacionExitosa;

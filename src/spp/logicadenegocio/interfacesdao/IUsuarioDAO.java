@@ -5,15 +5,15 @@
 package spp.logicadenegocio.interfacesdao;
 
 import spp.logicadenegocio.clasesdto.Usuario;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
 /**
  *
  * @author gomes
  */
 public interface IUsuarioDAO {
-    public int registrarUsuario(Usuario usuario)throws AccesoADatosExcepcion;
-    public Usuario consultarUsuario(int idUsuario)throws AccesoADatosExcepcion;
-    public boolean eliminarUsuario(int idUsuario)throws AccesoADatosExcepcion;
-    public boolean actualizarUsuario(Usuario usuario)throws AccesoADatosExcepcion;
+    public int registrarUsuario(Usuario usuario)throws OperacionesDeDaoExcepcion;
+    public Usuario consultarUsuario(int idUsuario)throws OperacionesDeDaoExcepcion;
+    public boolean eliminarUsuario(int idUsuario)throws OperacionesDeDaoExcepcion;
+    public boolean actualizarUsuario(Usuario usuario)throws OperacionesDeDaoExcepcion;
 }

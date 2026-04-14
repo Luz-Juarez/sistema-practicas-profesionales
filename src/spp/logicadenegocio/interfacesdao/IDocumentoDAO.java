@@ -5,13 +5,13 @@
 package spp.logicadenegocio.interfacesdao;
 
 import spp.logicadenegocio.clasesdto.Documento;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
 /**
  *
  * @author gomes
  */
 public interface IDocumentoDAO {
-    public boolean registrarDocumento(Documento documento)throws AccesoADatosExcepcion;
-    public Documento consultarDocumento(String nombre)throws AccesoADatosExcepcion;
+    public boolean registrarDocumento(Documento documento)throws OperacionesDeDaoExcepcion;
+    public Documento consultarDocumento(String nombre)throws OperacionesDeDaoExcepcion;
 }

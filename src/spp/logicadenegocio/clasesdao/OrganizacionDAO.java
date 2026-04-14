@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import spp.logicadenegocio.clasesdto.Organizacion;
 import spp.logicadenegocio.interfacesdao.IOrganizacionDAO;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
 
 /**
@@ -21,7 +21,7 @@ import spp.utilerias.excepciones.AccesoADatosExcepcion;
 public class OrganizacionDAO implements IOrganizacionDAO{
     
     @Override
-    public boolean registrarOrganizacion(Organizacion organizacion) throws AccesoADatosExcepcion{
+    public boolean registrarOrganizacion(Organizacion organizacion) throws OperacionesDeDaoExcepcion{
         
         boolean registroExitoso = false;
         
@@ -42,14 +42,14 @@ public class OrganizacionDAO implements IOrganizacionDAO{
             
             registroExitoso = true;
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         
         return registroExitoso;
     }
     
     @Override
-    public Organizacion consultarOrganizacion(int idOrganizacion)throws AccesoADatosExcepcion {
+    public Organizacion consultarOrganizacion(int idOrganizacion)throws OperacionesDeDaoExcepcion {
 
         Organizacion organizacion = null;
         
@@ -82,7 +82,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
             }
 
         } catch (SQLException e) {
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return organizacion;
@@ -90,7 +90,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
     }
 
     @Override
-    public boolean eliminarOrganizacion(int idOrganizacion)throws AccesoADatosExcepcion{
+    public boolean eliminarOrganizacion(int idOrganizacion)throws OperacionesDeDaoExcepcion{
         
         boolean eliminacionExitosa = false;
 
@@ -107,7 +107,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
                 eliminacionExitosa = true;
             }
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return eliminacionExitosa; 
@@ -115,7 +115,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
     }
 
     @Override
-    public boolean actualizarOrganizacion(Organizacion organizacion) throws AccesoADatosExcepcion{
+    public boolean actualizarOrganizacion(Organizacion organizacion) throws OperacionesDeDaoExcepcion{
         
         boolean actualizacionExitosa = false;
 
@@ -138,7 +138,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
                 actualizacionExitosa = true;
             }
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return actualizacionExitosa;

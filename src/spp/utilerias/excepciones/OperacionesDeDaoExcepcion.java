@@ -8,8 +8,8 @@ package spp.utilerias.excepciones;
  *
  * @author Luz Fernanda H J
  */
-public class AccesoADatosExcepcion extends Exception{
-    public AccesoADatosExcepcion(String mensaje, Throwable causa){
+public class OperacionesDeDaoExcepcion extends Exception{
+    public OperacionesDeDaoExcepcion(String mensaje, Throwable causa){
         super(mensaje, causa);
     }
 }

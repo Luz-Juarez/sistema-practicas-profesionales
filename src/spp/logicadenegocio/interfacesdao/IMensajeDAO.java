@@ -5,13 +5,13 @@
 package spp.logicadenegocio.interfacesdao;
 
 import spp.logicadenegocio.clasesdto.Mensaje;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
 /**
  *
  * @author gomes
  */
 public interface IMensajeDAO {
-    public boolean registrarMensaje(Mensaje mensaje)throws AccesoADatosExcepcion;
-    public Mensaje consultarMensaje()throws AccesoADatosExcepcion;
+    public boolean registrarMensaje(Mensaje mensaje)throws OperacionesDeDaoExcepcion;
+    public Mensaje consultarMensaje()throws OperacionesDeDaoExcepcion;
 }

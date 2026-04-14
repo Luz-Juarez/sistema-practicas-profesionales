@@ -5,15 +5,15 @@
 package spp.logicadenegocio.interfacesdao;
 
 import spp.logicadenegocio.clasesdto.Profesor;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
 /**
  *
  * @author gomes
  */
 public interface IProfesorDAO {
-    public boolean registrarProfesor(Profesor profesor)throws AccesoADatosExcepcion;
-    public Profesor consultarProfesor(String numeroDePersonal)throws AccesoADatosExcepcion;
-    public boolean eliminarProfesor(String numeroDePersonal)throws AccesoADatosExcepcion;
-    public boolean actualizarProfesor(Profesor profesor)throws AccesoADatosExcepcion;
+    public boolean registrarProfesor(Profesor profesor)throws OperacionesDeDaoExcepcion;
+    public Profesor consultarProfesor(String numeroDePersonal)throws OperacionesDeDaoExcepcion;
+    public boolean eliminarProfesor(String numeroDePersonal)throws OperacionesDeDaoExcepcion;
+    public boolean actualizarProfesor(Profesor profesor)throws OperacionesDeDaoExcepcion;
 }

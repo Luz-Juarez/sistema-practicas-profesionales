@@ -6,7 +6,7 @@ package spp.logicadenegocio.clasesdao;
 
 import spp.logicadenegocio.clasesdto.Reporte;
 import spp.logicadenegocio.interfacesdao.IReporteDAO;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
 /**
  *
@@ -15,12 +15,12 @@ import spp.utilerias.excepciones.AccesoADatosExcepcion;
 public class ReporteDAO implements IReporteDAO{
 
     @Override
-    public boolean registarReporte(Reporte reporte)throws AccesoADatosExcepcion {
+    public boolean registarReporte(Reporte reporte)throws OperacionesDeDaoExcepcion {
         throw new UnsupportedOperationException("No implementada aún."); 
     }
 
     @Override
-    public Reporte consultarReporte()throws AccesoADatosExcepcion {
+    public Reporte consultarReporte()throws OperacionesDeDaoExcepcion {
         throw new UnsupportedOperationException("No implementada aún."); 
     }
     

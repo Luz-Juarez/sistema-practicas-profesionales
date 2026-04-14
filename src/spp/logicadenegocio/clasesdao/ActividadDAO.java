@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import spp.accesoadatos.ConexionBD;
 import spp.logicadenegocio.clasesdto.Actividad;
 import spp.logicadenegocio.interfacesdao.IActividadDAO;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
 /**
  *
@@ -21,7 +21,7 @@ import spp.utilerias.excepciones.AccesoADatosExcepcion;
 public class ActividadDAO implements IActividadDAO{
 
     @Override
-    public boolean registrarActividad(Actividad actividad) throws AccesoADatosExcepcion {
+    public boolean registrarActividad(Actividad actividad) throws OperacionesDeDaoExcepcion {
         
         boolean registroExitoso = false;
         
@@ -43,7 +43,7 @@ public class ActividadDAO implements IActividadDAO{
             registroExitoso = true;
             
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         
     return registroExitoso;
@@ -51,7 +51,7 @@ public class ActividadDAO implements IActividadDAO{
     }
 
     @Override
-    public Actividad consultarActividad(String titulo) throws AccesoADatosExcepcion{
+    public Actividad consultarActividad(String titulo) throws OperacionesDeDaoExcepcion{
         
         Actividad actividad = null;
         
@@ -77,7 +77,7 @@ public class ActividadDAO implements IActividadDAO{
                 }
             }
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         
     return actividad;
@@ -85,7 +85,7 @@ public class ActividadDAO implements IActividadDAO{
     }
 
     @Override
-    public boolean eliminarActividad(String titulo) throws AccesoADatosExcepcion {
+    public boolean eliminarActividad(String titulo) throws OperacionesDeDaoExcepcion {
         
         boolean eliminacionExitosa = false;
         
@@ -102,7 +102,7 @@ public class ActividadDAO implements IActividadDAO{
             }
              
          }catch(SQLException e){
-             throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+             throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
          }
         
     return eliminacionExitosa; 
@@ -110,7 +110,7 @@ public class ActividadDAO implements IActividadDAO{
     }
 
     @Override
-    public boolean actualizarActividad(Actividad actividad) throws AccesoADatosExcepcion{
+    public boolean actualizarActividad(Actividad actividad) throws OperacionesDeDaoExcepcion{
         
         boolean actualizacionExitosa = false;
         
@@ -130,7 +130,7 @@ public class ActividadDAO implements IActividadDAO{
             }
             
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         
     return actualizacionExitosa;

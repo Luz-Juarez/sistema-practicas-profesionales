@@ -5,15 +5,15 @@
 package spp.logicadenegocio.interfacesdao;
 
 import spp.logicadenegocio.clasesdto.Organizacion;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
 /**
  *
  * @author gomes
  */
 public interface IOrganizacionDAO {
-    public boolean registrarOrganizacion(Organizacion organizacion) throws AccesoADatosExcepcion;
-    public Organizacion consultarOrganizacion(int idOrganizacion)throws AccesoADatosExcepcion;
-    public boolean eliminarOrganizacion(int idOrganizacion)throws AccesoADatosExcepcion;
-    public boolean actualizarOrganizacion(Organizacion organizacion)throws AccesoADatosExcepcion;
+    public boolean registrarOrganizacion(Organizacion organizacion) throws OperacionesDeDaoExcepcion;
+    public Organizacion consultarOrganizacion(int idOrganizacion)throws OperacionesDeDaoExcepcion;
+    public boolean eliminarOrganizacion(int idOrganizacion)throws OperacionesDeDaoExcepcion;
+    public boolean actualizarOrganizacion(Organizacion organizacion)throws OperacionesDeDaoExcepcion;
 }

@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import spp.logicadenegocio.clasesdto.Usuario;
 import java.sql.ResultSet;
 import spp.logicadenegocio.interfacesdao.IUsuarioDAO;
-import spp.utilerias.excepciones.AccesoADatosExcepcion;
+import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 import java.sql.SQLException;
 
 /**
@@ -21,7 +21,7 @@ import java.sql.SQLException;
 public class UsuarioDAO implements IUsuarioDAO {
     
     @Override
-    public int registrarUsuario(Usuario usuario) throws AccesoADatosExcepcion{
+    public int registrarUsuario(Usuario usuario) throws OperacionesDeDaoExcepcion{
         
         boolean registroExitoso = false;
         
@@ -51,7 +51,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             resultadosConsulta.close();
 
         } catch (SQLException e) {
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         
         if(registroExitoso){
@@ -62,7 +62,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
     
     @Override
-    public Usuario consultarUsuario(int idUsuario)throws AccesoADatosExcepcion {
+    public Usuario consultarUsuario(int idUsuario)throws OperacionesDeDaoExcepcion {
 
         Usuario usuario = null;
         
@@ -93,14 +93,14 @@ public class UsuarioDAO implements IUsuarioDAO {
             } 
 
         } catch (SQLException e) {
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return usuario;
 }
 
     @Override
-    public boolean eliminarUsuario(int idUsuario)throws AccesoADatosExcepcion {
+    public boolean eliminarUsuario(int idUsuario)throws OperacionesDeDaoExcepcion {
         
         boolean eliminacionExitosa = false;
 
@@ -118,7 +118,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             }
             
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return eliminacionExitosa; 
@@ -126,7 +126,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public boolean actualizarUsuario(Usuario usuario)throws AccesoADatosExcepcion {
+    public boolean actualizarUsuario(Usuario usuario)throws OperacionesDeDaoExcepcion {
         
         boolean actualizacionExitosa = false;
 
@@ -150,7 +150,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             }
             
         }catch(SQLException e){
-            throw new AccesoADatosExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
 
     return actualizacionExitosa;
