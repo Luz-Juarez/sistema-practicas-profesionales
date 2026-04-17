@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package spp.clasesdaotest;
+package spp.pruebasclasesdao;
 
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
@@ -19,6 +19,7 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  * @author Luz Fernanda H J
  */
 public class PruebaActividadDAO {
+    
     @Test 
     public void pruebaRegistrarActividadDAOExitosa() throws OperacionesDeDaoExcepcion{
         
@@ -36,5 +37,6 @@ public class PruebaActividadDAO {
         
         boolean registroExitoso = actividadDao.registrarActividad(actividad);
         assertTrue("Registro de actividad exitoso es: ",registroExitoso);
+        
     }
 }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
-package spp.clasesdaotest;
+package spp.pruebasclasesdao;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,6 +24,7 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 public class PruebaPracticanteDAO {
     
     Usuario usuario = new Usuario();
+    
     @Before
     public void recursoInsertarUsuario()throws OperacionesDeDaoExcepcion{
         
@@ -34,6 +35,7 @@ public class PruebaPracticanteDAO {
         usuario.setContraseña("password");
         usuario.setEsActivo(true);
         usuariodao.registrarUsuario(usuario);
+        
     }
     
     @Test
@@ -55,7 +57,9 @@ public class PruebaPracticanteDAO {
 
         boolean registroExitoso = practicanteDao.registrarPracticante(practicante);
         assertTrue(registroExitoso);
+        
     }
+    
     @After
     public void eliminarUsuario()throws OperacionesDeDaoExcepcion{
         

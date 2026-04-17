@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
-package spp.clasesdaotest;
+package spp.pruebasclasesdao;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -18,6 +18,7 @@ public class PruebaOrganizacionDAO {
     
     @Test
     public void pruebaInsertarOrganizcionDaoExitosa()throws OperacionesDeDaoExcepcion{
+        
         Organizacion organizacion = new Organizacion();
         OrganizacionDAO organizaciondao = new OrganizacionDAO();
         
@@ -28,5 +29,7 @@ public class PruebaOrganizacionDAO {
         
         boolean registroExitoso = organizaciondao.registrarOrganizacion(organizacion);
         assertTrue(registroExitoso);
+        
     }
+    
 }

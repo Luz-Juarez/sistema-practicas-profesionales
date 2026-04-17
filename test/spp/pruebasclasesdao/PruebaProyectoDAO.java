@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package spp.clasesdaotest;
+package spp.pruebasclasesdao;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,20 +19,25 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  * @author Luz Fernanda H J
  */
 public class PruebaProyectoDAO {
+    
     Organizacion organizacion = new Organizacion();
+    
     @Before
     public void recursoInsertarOrganizacionVinculada()throws OperacionesDeDaoExcepcion{
         OrganizacionDAO organizaciondao = new OrganizacionDAO();
-        organizacion.setIdOrganizacion(1);
+        organizacion.setIdOrganizacion(2);
         organizacion.setNombre("Vought");
         organizacion.setDireccion("Torre Vought en Nueva York");
         organizacion.setSector("Privado");
         organizacion.setEsActivo(true);
         
         organizaciondao.registrarOrganizacion(organizacion);
+        
     }
+    
     @Test
     public void pruebaRegistroProyectoDAOExitosa()throws OperacionesDeDaoExcepcion{
+        
         Proyecto proyecto = new Proyecto();
         ProyectoDAO proyectodao = new ProyectoDAO();
         
@@ -45,7 +50,9 @@ public class PruebaProyectoDAO {
         
         boolean registroExitoso = proyectodao.registrarProyecto(proyecto);
         assertTrue(registroExitoso);
+        
     }
+    
     @After
     public void recursoEliminarOrganizacionVinculada(){
         

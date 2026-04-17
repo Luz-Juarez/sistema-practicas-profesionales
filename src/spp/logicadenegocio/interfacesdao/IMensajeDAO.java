@@ -13,5 +13,5 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  */
 public interface IMensajeDAO {
     public boolean registrarMensaje(Mensaje mensaje)throws OperacionesDeDaoExcepcion;
-    public Mensaje consultarMensaje()throws OperacionesDeDaoExcepcion;
+    public Mensaje consultarMensaje(String asunto)throws OperacionesDeDaoExcepcion;
 }

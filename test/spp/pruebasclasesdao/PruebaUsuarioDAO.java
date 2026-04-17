@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package spp.clasesdaotest;
+package spp.pruebasclasesdao;
 
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
@@ -29,4 +29,5 @@ public class PruebaUsuarioDAO {
         int idGenerado = usuariodao.registrarUsuario(usuario);
         assertTrue("No se generó un ID válido", idGenerado > 0);
     }
+    
 }
