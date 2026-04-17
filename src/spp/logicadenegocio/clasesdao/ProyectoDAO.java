@@ -53,16 +53,16 @@ public class ProyectoDAO implements IProyectoDAO {
     }
        
     @Override
-    public Proyecto consultarProyecto(int idProyecto)throws OperacionesDeDaoExcepcion {
+    public Proyecto consultarProyecto(String nombre)throws OperacionesDeDaoExcepcion {
         
         Proyecto proyecto = null;
         
-         String consultaSQL = "SELECT * FROM Proyecto WHERE idProyecto = ?";
+         String consultaSQL = "SELECT * FROM Proyecto WHERE nombre = ?";
 
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
           
-            consultaPreparada.setInt(1, idProyecto);
+            consultaPreparada.setString(1, nombre);
 
             ResultSet resultadosConsulta = consultaPreparada.executeQuery();
 
@@ -100,16 +100,16 @@ public class ProyectoDAO implements IProyectoDAO {
 
 
     @Override
-    public boolean eliminarProyecto(int idProyecto)throws OperacionesDeDaoExcepcion {
+    public boolean eliminarProyecto(String nombre)throws OperacionesDeDaoExcepcion {
         
         boolean eliminacionExitosa = false;
 
-        String consultaSQL = "DELETE FROM PROYECTO WHERE idProyecto = ?";
+        String consultaSQL = "DELETE FROM PROYECTO WHERE nombre = ?";
 
         try (Connection conexion = ConexionBD.getConexion();
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
 
-            consultaPreparada.setInt(1, idProyecto);
+            consultaPreparada.setString(1, nombre);
 
             int filasAfectadas = consultaPreparada.executeUpdate();
 
@@ -132,7 +132,7 @@ public class ProyectoDAO implements IProyectoDAO {
 
         String consultaSQL = "UPDATE PROYECTO SET nombre = ?, descripcion = ?, "
                 + "nombreResponsable = ?, cupoMaximo = ?, estado = ?, Organizacion_idOrganizacion = ? "
-                + "WHERE idProyecto = ? ";
+                + "WHERE nombre = ? ";
 
         try (Connection conexion = ConexionBD.getConexion();
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
@@ -143,7 +143,7 @@ public class ProyectoDAO implements IProyectoDAO {
             consultaPreparada.setInt(4, proyecto.getCupoMaximo());
             consultaPreparada.setBoolean(5, proyecto.getEsActivo());
             consultaPreparada.setInt(6, proyecto.getOrganizacion().getIdOrganizacion());
-            consultaPreparada.setInt(7, proyecto.getIdProyecto());
+            consultaPreparada.setString(7, proyecto.getNombre());
 
             int filasAfectadas = consultaPreparada.executeUpdate();
 

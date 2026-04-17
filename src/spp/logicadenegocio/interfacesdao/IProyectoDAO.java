@@ -13,7 +13,7 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  */
 public interface IProyectoDAO {
     public boolean registrarProyecto(Proyecto proyecto)throws OperacionesDeDaoExcepcion;
-    public Proyecto consultarProyecto(int idProyecto)throws OperacionesDeDaoExcepcion;
-    public boolean eliminarProyecto(int idProyecto)throws OperacionesDeDaoExcepcion;
+    public Proyecto consultarProyecto(String nombre)throws OperacionesDeDaoExcepcion;
+    public boolean eliminarProyecto(String nombre)throws OperacionesDeDaoExcepcion;
     public boolean actualizarProyecto(Proyecto proyecto)throws OperacionesDeDaoExcepcion;
 }

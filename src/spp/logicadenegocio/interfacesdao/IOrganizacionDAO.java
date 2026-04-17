@@ -13,7 +13,7 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  */
 public interface IOrganizacionDAO {
     public boolean registrarOrganizacion(Organizacion organizacion) throws OperacionesDeDaoExcepcion;
-    public Organizacion consultarOrganizacion(int idOrganizacion)throws OperacionesDeDaoExcepcion;
-    public boolean eliminarOrganizacion(int idOrganizacion)throws OperacionesDeDaoExcepcion;
+    public Organizacion consultarOrganizacion(String nombre)throws OperacionesDeDaoExcepcion;
+    public boolean eliminarOrganizacion(String nombre)throws OperacionesDeDaoExcepcion;
     public boolean actualizarOrganizacion(Organizacion organizacion)throws OperacionesDeDaoExcepcion;
 }

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.sql.SQLException;
 import spp.accesoadatos.ConexionBD;
 import spp.logicadenegocio.clasesdto.Actividad;
+import spp.logicadenegocio.clasesdto.Profesor;
 import spp.logicadenegocio.interfacesdao.IActividadDAO;
 import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 
@@ -55,7 +56,7 @@ public class ActividadDAO implements IActividadDAO{
         
         Actividad actividad = null;
         
-        String consultaSQL = "SELECT idActividad, titulo, descripcion, fechaLimite "
+        String consultaSQL = "SELECT idActividad, titulo, descripcion, fechaLimite, Profesor_idUsuario "
                 + "FROM Actividad WHERE titulo = ? ";
         
         
@@ -73,6 +74,10 @@ public class ActividadDAO implements IActividadDAO{
                 actividad.setTitulo(resultadosConsulta.getString("titulo"));
                 actividad.setDescripcion(resultadosConsulta.getString("descripcion"));
                 actividad.setFechaLimite(resultadosConsulta.getObject("fechaLimite",LocalDateTime.class));
+                
+                Profesor profesor = new Profesor();
+                profesor.setIdUsuario(resultadosConsulta.getInt("Profesor_idUsuario"));
+                actividad.setProfesor(profesor);
                 
                 }
             }
@@ -123,6 +128,7 @@ public class ActividadDAO implements IActividadDAO{
             consultaPreparada.setString(1, actividad.getTitulo());
             consultaPreparada.setString(2, actividad.getDescripcion());
             consultaPreparada.setObject(3, actividad.getFechaLimite());
+            consultaPreparada.setString(4, actividad.getTitulo());
             
             int filasAfectadas = consultaPreparada.executeUpdate();
             if(filasAfectadas > 0){

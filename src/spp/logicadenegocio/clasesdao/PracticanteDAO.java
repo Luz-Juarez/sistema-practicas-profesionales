@@ -39,7 +39,6 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             java.sql.Date fechaParaBD = new java.sql.Date(practicante.getFechaNacimiento().getTime());
             consultaPreparada.setDate(5, fechaParaBD);
             
-            
             consultaPreparada.executeUpdate();
             
             registroExitoso = true;
@@ -56,7 +55,8 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
 
         Practicante practicante = null;
         
-        String consultaSQL = "SELECT idUsuario, matricula FROM Practicante WHERE matricula = ?";
+        String consultaSQL = "SELECT idUsuario, matricula, genero, lenguaIndigena, "
+                + "fechaNacimiento FROM Practicante WHERE matricula = ?";
         
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);) {
@@ -71,6 +71,9 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
 
                 practicante.setIdUsuario(resultadosConsulta.getInt("idUsuario"));
                 practicante.setMatricula(resultadosConsulta.getString("matricula"));
+                practicante.setGenero(resultadosConsulta.getString("genero"));
+                practicante.setHablaLenguaIndigena(resultadosConsulta.getBoolean("lenguaIndigena"));
+                practicante.setFechaNacimiento(resultadosConsulta.getDate("fechaNacimiento"));
 
             }
 
@@ -114,7 +117,7 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
 
         String consultaSQL = "UPDATE Practicante SET matricula = ?, genero = ?, "
                 + "lenguaIndigena = ?, fechaNacimiento = ? "
-                + "WHERE idUsuario = ?";
+                + "WHERE matricula = ?";
 
         try (Connection conexion = ConexionBD.getConexion();
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
@@ -124,7 +127,7 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             consultaPreparada.setBoolean(3, practicante.gethablaLenguaIndigena());
             java.sql.Date fechaParaBD = new java.sql.Date(practicante.getFechaNacimiento().getTime());
             consultaPreparada.setDate(4, fechaParaBD);
-            consultaPreparada.setInt(5, practicante.getIdUsuario());
+            consultaPreparada.setString(5, practicante.getMatricula());
 
             int filasAfectadas = consultaPreparada.executeUpdate();
 

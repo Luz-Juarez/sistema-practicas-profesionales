@@ -24,12 +24,13 @@ public class CoordinadorDAO implements ICoordinadorDAO {
         
         boolean registroExitoso = false;
         
-        String consultaSQL = "INSERT INTO Coordinador (noPersonal) VALUES (?)";
+        String consultaSQL = "INSERT INTO Coordinador (idUsuario, noPersonal) VALUES (?, ?)";
         
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
             
-            consultaPreparada.setString(1,coordinador.getNumeroDePersonal());
+            consultaPreparada.setInt(1, coordinador.getIdUsuario());
+            consultaPreparada.setString(2, coordinador.getNumeroDePersonal());
             consultaPreparada.executeUpdate();
             registroExitoso=true;
             
@@ -100,12 +101,12 @@ public class CoordinadorDAO implements ICoordinadorDAO {
         
         boolean actualizacionExitosa = false;
         
-        String consultaSQL = "UPDATE Coordinador SET noPersonal";
+        String consultaSQL = "UPDATE Coordinador SET noPersonal WHERE idUsuario = ?";
         
         try(Connection conexion = ConexionBD.getConexion();
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
             
-            consultaPreparada.setString(1, coordinador.getNumeroDePersonal());
+            consultaPreparada.setInt(1, coordinador.getIdUsuario());
             
             int filasAfectadas = consultaPreparada.executeUpdate();
             if(filasAfectadas > 0){

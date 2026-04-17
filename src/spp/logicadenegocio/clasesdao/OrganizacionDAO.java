@@ -26,17 +26,16 @@ public class OrganizacionDAO implements IOrganizacionDAO{
         boolean registroExitoso = false;
         
         String consultaSQL = """
-                INSERT INTO Organizacion(idOrganizacion, nombre, direccion, sector, estado) 
-                             VALUES (?, ?, ?, ?, ?)""";
+                INSERT INTO Organizacion(nombre, direccion, sector, estado) 
+                             VALUES (?, ?, ?, ?)""";
         
         try (Connection conexion = ConexionBD.getConexion(); 
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
             
-            consultaPreparada.setInt(1, organizacion.getIdOrganizacion());
-            consultaPreparada.setString(2, organizacion.getNombre());
-            consultaPreparada.setString(3, organizacion.getDireccion());
-            consultaPreparada.setString(4, organizacion.getSector());
-            consultaPreparada.setBoolean(5, organizacion.getEsActivo());
+            consultaPreparada.setString(1, organizacion.getNombre());
+            consultaPreparada.setString(2, organizacion.getDireccion());
+            consultaPreparada.setString(3, organizacion.getSector());
+            consultaPreparada.setBoolean(4, organizacion.getEsActivo());
            
             consultaPreparada.executeUpdate();
             
@@ -49,16 +48,16 @@ public class OrganizacionDAO implements IOrganizacionDAO{
     }
     
     @Override
-    public Organizacion consultarOrganizacion(int idOrganizacion)throws OperacionesDeDaoExcepcion {
+    public Organizacion consultarOrganizacion(String nombre)throws OperacionesDeDaoExcepcion {
 
         Organizacion organizacion = null;
         
-        String consultaSQL = "SELECT * FROM Organizacion WHERE idOrganizacion = ?";
+        String consultaSQL = "SELECT * FROM Organizacion WHERE nombre = ?";
         
         try (Connection conexion = ConexionBD.getConexion();
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
             
-            consultaPreparada.setInt(1, idOrganizacion);
+            consultaPreparada.setString(1, nombre);
 
             ResultSet resultadosConsulta = consultaPreparada.executeQuery();
 
@@ -90,16 +89,16 @@ public class OrganizacionDAO implements IOrganizacionDAO{
     }
 
     @Override
-    public boolean eliminarOrganizacion(int idOrganizacion)throws OperacionesDeDaoExcepcion{
+    public boolean eliminarOrganizacion(String nombre)throws OperacionesDeDaoExcepcion{
         
         boolean eliminacionExitosa = false;
 
-        String consultaSQL = "DELETE FROM Organizacion WHERE idOrganizacion = ?";
+        String consultaSQL = "DELETE FROM Organizacion WHERE nombre = ?";
 
         try (Connection conexion = ConexionBD.getConexion();
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
 
-            consultaPreparada.setInt(1, idOrganizacion);
+            consultaPreparada.setString (1, nombre );
 
             int filasAfectadas = consultaPreparada.executeUpdate();
 
@@ -121,7 +120,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
 
         String consultaSQL = "UPDATE Organizacion SET nombre = ?, direccion = ?, "
                 + "sector = ?, estado = ? "
-                + "WHERE idOrganizacion = ?";
+                + "WHERE nombre = ?";
 
         try (Connection conexion = ConexionBD.getConexion();
              PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL)) {
@@ -130,7 +129,7 @@ public class OrganizacionDAO implements IOrganizacionDAO{
             consultaPreparada.setString(2, organizacion.getDireccion());
             consultaPreparada.setString(3, organizacion.getSector());
             consultaPreparada.setBoolean(4, organizacion.getEsActivo());
-            consultaPreparada.setInt(5, organizacion.getIdOrganizacion());
+            consultaPreparada.setString(5, organizacion.getNombre());
 
             int filasAfectadas = consultaPreparada.executeUpdate();
 
