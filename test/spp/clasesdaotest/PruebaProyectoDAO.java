@@ -23,6 +23,7 @@ public class PruebaProyectoDAO {
     @Before
     public void recursoInsertarOrganizacionVinculada()throws OperacionesDeDaoExcepcion{
         OrganizacionDAO organizaciondao = new OrganizacionDAO();
+        organizacion.setIdOrganizacion(1);
         organizacion.setNombre("Vought");
         organizacion.setDireccion("Torre Vought en Nueva York");
         organizacion.setSector("Privado");

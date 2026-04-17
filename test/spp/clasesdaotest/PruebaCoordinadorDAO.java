@@ -17,14 +17,15 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  *
  * @author Luz Fernanda H J
  */
-public class PruebasCoordinadorDAO {
+public class PruebaCoordinadorDAO {
     Usuario usuario = new Usuario();
     @Before
     public void recursoInsertarUsuario()throws OperacionesDeDaoExcepcion{
         
         UsuarioDAO usuariodao = new UsuarioDAO();
-        usuario.setNombre("Jorge Octavio");
-        usuario.setApellidos("Ocharan Hernandez");
+        usuario.setIdUsuario(2);
+        usuario.setNombre("Juan Carlos");
+        usuario.setApellidos("Perez Arriaga");
         usuario.setContraseña("password");
         usuario.setEsActivo(true);
         usuariodao.registrarUsuario(usuario);

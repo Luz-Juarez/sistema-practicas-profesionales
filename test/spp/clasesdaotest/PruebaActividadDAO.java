@@ -18,7 +18,7 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  *
  * @author Luz Fernanda H J
  */
-public class PruebasActividadDAO {
+public class PruebaActividadDAO {
     @Test 
     public void pruebaRegistrarActividadDAOExitosa() throws OperacionesDeDaoExcepcion{
         

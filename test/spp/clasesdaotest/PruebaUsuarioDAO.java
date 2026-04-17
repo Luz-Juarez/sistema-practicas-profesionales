@@ -27,6 +27,6 @@ public class PruebaUsuarioDAO {
         usuario.setEsActivo(true);
         
         int idGenerado = usuariodao.registrarUsuario(usuario);
-        assertTrue("El id nuevo es: ", idGenerado<0);
+        assertTrue("No se generó un ID válido", idGenerado > 0);
     }
 }
