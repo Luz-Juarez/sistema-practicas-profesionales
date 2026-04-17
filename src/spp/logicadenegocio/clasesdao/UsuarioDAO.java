@@ -51,7 +51,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             resultadosConsulta.close();
 
         } catch (SQLException e) {
-            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos", e);
         }
         
         if(registroExitoso){

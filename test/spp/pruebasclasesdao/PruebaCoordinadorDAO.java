@@ -13,10 +13,6 @@ import spp.logicadenegocio.clasesdao.UsuarioDAO;
 import spp.logicadenegocio.clasesdto.Coordinador;
 import spp.logicadenegocio.clasesdao.CoordinadorDAO;
 import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
-import spp.accesoadatos.ConexionBD;
-import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  *
@@ -25,17 +21,17 @@ import java.sql.SQLException;
 public class PruebaCoordinadorDAO {
     
     Usuario usuario = new Usuario();
+    int idUsuario=0;
     
     @Before
     public void recursoInsertarUsuario()throws OperacionesDeDaoExcepcion{
         
-        UsuarioDAO usuariodao = new UsuarioDAO();
-        usuario.setIdUsuario(1);
+        UsuarioDAO usuarioDao = new UsuarioDAO();
         usuario.setNombre("Juan Carlos");
         usuario.setApellidos("Perez Arriaga");
         usuario.setContraseña("password");
         usuario.setEsActivo(true);
-        usuariodao.registrarUsuario(usuario);
+        idUsuario = usuarioDao.registrarUsuario(usuario);
         
     }
     
@@ -45,7 +41,7 @@ public class PruebaCoordinadorDAO {
         Coordinador coordinador = new Coordinador();
         CoordinadorDAO coordinadorDao = new CoordinadorDAO();
         
-        coordinador.setIdUsuario(usuario.getIdUsuario());
+        coordinador.setIdUsuario(idUsuario);
         coordinador.setNumeroDePersonal("p2401");
         
         boolean registroExitoso = coordinadorDao.registrarCoordinador(coordinador);
@@ -55,24 +51,12 @@ public class PruebaCoordinadorDAO {
     
     @After
     public void eliminarUsuario()throws OperacionesDeDaoExcepcion{
-        
-        try {
-            Connection conexion = ConexionBD.getConexion();
-            Statement st = conexion.createStatement();
-
-            st.execute("SET FOREIGN_KEY_CHECKS = 0");
-
-            st.execute("DELETE FROM coordinador");
-            st.execute("DELETE FROM usuario");
-
-            st.execute("SET FOREIGN_KEY_CHECKS = 1");
-
-            st.close();
-            conexion.close();   
-
-        } catch (SQLException e) {
-            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
+        if(idUsuario<0){
+           CoordinadorDAO coordinadorDao = new CoordinadorDAO();
+           UsuarioDAO usuarioDao = new UsuarioDAO();
+           coordinadorDao.eliminarCoordinador("p2401");
+           usuarioDao.eliminarUsuario(idUsuario);
+           System.out.println("Usuario y coordinador de prueba eliminados");
         }
-        
     }
 }

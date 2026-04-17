@@ -24,7 +24,7 @@ public class CoordinadorDAO implements ICoordinadorDAO {
         
         boolean registroExitoso = false;
         
-        String consultaSQL = "INSERT INTO Coordinador (idUsuario, noPersonal) VALUES (?, ?)";
+        String consultaSQL = "INSERT INTO Coordinador (Usuario_idUsuario, noPersonal) VALUES (?, ?)";
         
         try(Connection conexion = ConexionBD.getConexion();
             PreparedStatement consultaPreparada = conexion.prepareStatement(consultaSQL);){
@@ -35,6 +35,7 @@ public class CoordinadorDAO implements ICoordinadorDAO {
             registroExitoso=true;
             
         }catch(SQLException e){
+            e.printStackTrace();
             throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
         
