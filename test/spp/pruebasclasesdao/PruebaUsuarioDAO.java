@@ -18,6 +18,7 @@ public class PruebaUsuarioDAO {
     
     @Test
     public void pruebaInsertarUsuarioDaoExitosa()throws OperacionesDeDaoExcepcion{
+       
         Usuario usuario = new Usuario();
         UsuarioDAO usuariodao = new UsuarioDAO();
         
@@ -28,6 +29,7 @@ public class PruebaUsuarioDAO {
         
         int idGenerado = usuariodao.registrarUsuario(usuario);
         assertTrue("No se generó un ID válido", idGenerado > 0);
+        
     }
     
 }

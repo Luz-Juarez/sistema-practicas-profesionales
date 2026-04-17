@@ -38,7 +38,7 @@ public class PruebaProfesorDAO {
     }
     
     @Test
-    public void pruebaInsertarProfesorDao()throws OperacionesDeDaoExcepcion{
+    public void pruebaInsertarProfesorDaoExitoso()throws OperacionesDeDaoExcepcion{
        
         Profesor profesor = new Profesor();
         ProfesorDAO profesorDao = new ProfesorDAO();

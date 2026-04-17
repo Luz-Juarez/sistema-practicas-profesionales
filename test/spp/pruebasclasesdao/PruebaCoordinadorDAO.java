@@ -21,7 +21,7 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 public class PruebaCoordinadorDAO {
     
     Usuario usuario = new Usuario();
-    int idUsuario=0;
+    int idUsuario;
     
     @Before
     public void recursoInsertarUsuario()throws OperacionesDeDaoExcepcion{
@@ -36,7 +36,7 @@ public class PruebaCoordinadorDAO {
     }
     
     @Test
-    public void pruebaInsertarCoordinadorDao()throws OperacionesDeDaoExcepcion{
+    public void pruebaInsertarCoordinadorDaoExitoso()throws OperacionesDeDaoExcepcion{
        
         Coordinador coordinador = new Coordinador();
         CoordinadorDAO coordinadorDao = new CoordinadorDAO();
@@ -50,13 +50,16 @@ public class PruebaCoordinadorDAO {
     }
     
     @After
-    public void eliminarUsuario()throws OperacionesDeDaoExcepcion{
+    public void recursoEliminarUsuario()throws OperacionesDeDaoExcepcion{
+        
         if(idUsuario<0){
+            
            CoordinadorDAO coordinadorDao = new CoordinadorDAO();
            UsuarioDAO usuarioDao = new UsuarioDAO();
            coordinadorDao.eliminarCoordinador("p2401");
            usuarioDao.eliminarUsuario(idUsuario);
            System.out.println("Usuario y coordinador de prueba eliminados");
+           
         }
     }
 }

@@ -51,7 +51,7 @@ public class PruebaDocumentoDAO {
     }
     
     @After
-    public void eliminarUsuario()throws OperacionesDeDaoExcepcion{
+    public void recursoEliminarUsuario()throws OperacionesDeDaoExcepcion{
         
     }
 }

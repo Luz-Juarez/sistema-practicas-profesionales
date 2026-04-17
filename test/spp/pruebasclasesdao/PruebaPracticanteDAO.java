@@ -39,7 +39,7 @@ public class PruebaPracticanteDAO {
     }
     
     @Test
-    public void pruebaInsertarPracticanteDao()throws OperacionesDeDaoExcepcion{
+    public void pruebaInsertarPracticanteDaoExitoso()throws OperacionesDeDaoExcepcion{
        
         Practicante practicante = new Practicante();
         PracticanteDAO practicanteDao = new PracticanteDAO();
