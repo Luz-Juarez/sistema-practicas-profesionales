@@ -20,14 +20,14 @@ public class PruebaOrganizacionDAO {
     public void pruebaInsertarOrganizcionDaoExitosa()throws OperacionesDeDaoExcepcion{
         
         Organizacion organizacion = new Organizacion();
-        OrganizacionDAO organizaciondao = new OrganizacionDAO();
+        OrganizacionDAO organizacionDao = new OrganizacionDAO();
         
         organizacion.setNombre("Vengadores");
         organizacion.setDireccion("Av. Siempre Viva no 1");
         organizacion.setSector("Privado");
         organizacion.setEsActivo(true);
         
-        boolean registroExitoso = organizaciondao.registrarOrganizacion(organizacion);
+        boolean registroExitoso = organizacionDao.registrarOrganizacion(organizacion);
         assertTrue(registroExitoso);
         
     }

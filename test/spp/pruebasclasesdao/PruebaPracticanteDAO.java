@@ -24,17 +24,17 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 public class PruebaPracticanteDAO {
     
     Usuario usuario = new Usuario();
+    int idUsuario;
     
     @Before
     public void recursoInsertarUsuario()throws OperacionesDeDaoExcepcion{
         
-        UsuarioDAO usuariodao = new UsuarioDAO();
-        usuario.setIdUsuario(2);
+        UsuarioDAO usuarioDao = new UsuarioDAO();
         usuario.setNombre("Brian Arturo");
         usuario.setApellidos("Morales Juarez");
         usuario.setContraseña("password");
         usuario.setEsActivo(true);
-        usuariodao.registrarUsuario(usuario);
+        idUsuario = usuarioDao.registrarUsuario(usuario);
         
     }
     
@@ -62,7 +62,15 @@ public class PruebaPracticanteDAO {
     
     @After
     public void eliminarUsuario()throws OperacionesDeDaoExcepcion{
-        
+        if(idUsuario < 0){
+            
+           PracticanteDAO practicanteDao = new PracticanteDAO();
+           UsuarioDAO usuarioDao = new UsuarioDAO();
+           practicanteDao.eliminarPracticante("zS2401");
+           usuarioDao.eliminarUsuario(idUsuario);
+           System.out.println("Usuario y practicante de prueba eliminados");
+           
+        }
     }
     
 }

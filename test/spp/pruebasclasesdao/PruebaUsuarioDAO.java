@@ -20,14 +20,14 @@ public class PruebaUsuarioDAO {
     public void pruebaInsertarUsuarioDaoExitosa()throws OperacionesDeDaoExcepcion{
        
         Usuario usuario = new Usuario();
-        UsuarioDAO usuariodao = new UsuarioDAO();
+        UsuarioDAO usuarioDao = new UsuarioDAO();
         
         usuario.setNombre("Jorge Octavio");
         usuario.setApellidos("Ocharan Hernandez");
         usuario.setContraseña("password");
         usuario.setEsActivo(true);
         
-        int idGenerado = usuariodao.registrarUsuario(usuario);
+        int idGenerado = usuarioDao.registrarUsuario(usuario);
         assertTrue("No se generó un ID válido", idGenerado > 0);
         
     }

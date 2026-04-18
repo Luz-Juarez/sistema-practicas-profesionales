@@ -21,16 +21,17 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 public class PruebaDocumentoDAO {
     
     Usuario usuario = new Usuario();
+    int idUsuario;
     
     @Before
     public void recursoInsertarUsuario()throws OperacionesDeDaoExcepcion{
         
-        UsuarioDAO usuariodao = new UsuarioDAO();
+        UsuarioDAO usuarioDao = new UsuarioDAO();
         usuario.setNombre("Jorge Octavio");
         usuario.setApellidos("Ocharan Hernandez");
         usuario.setContraseña("password");
         usuario.setEsActivo(true);
-        usuariodao.registrarUsuario(usuario);
+        idUsuario = usuarioDao.registrarUsuario(usuario);
         
     }
     
@@ -38,14 +39,14 @@ public class PruebaDocumentoDAO {
     public void pruebaRegistrarDocumentoDAOExitoso()throws OperacionesDeDaoExcepcion{
         
         Documento documento = new Documento();
-        DocumentoDAO documentodao = new DocumentoDAO();
+        DocumentoDAO documentoDao = new DocumentoDAO();
         
         documento.setNombre("BDDS Procemientos almacenados");
         documento.setRuta("ruta/ejemplo/BDDS Procemientos almacenados");
         documento.setTipo("Actividad");
         documento.setUsuario(usuario);
         
-        boolean registroExitoso = documentodao.registrarDocumento(documento);
+        boolean registroExitoso = documentoDao.registrarDocumento(documento);
         assertTrue(registroExitoso);
         
     }
@@ -53,5 +54,12 @@ public class PruebaDocumentoDAO {
     @After
     public void recursoEliminarUsuario()throws OperacionesDeDaoExcepcion{
         
+        if(idUsuario < 0){
+           
+           UsuarioDAO usuarioDao = new UsuarioDAO();
+           usuarioDao.eliminarUsuario(idUsuario);
+           System.out.println("Usuario de prueba eliminado");
+           
+        }
     }
 }

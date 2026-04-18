@@ -52,7 +52,7 @@ public class PruebaCoordinadorDAO {
     @After
     public void recursoEliminarUsuario()throws OperacionesDeDaoExcepcion{
         
-        if(idUsuario<0){
+        if(idUsuario < 0){
             
            CoordinadorDAO coordinadorDao = new CoordinadorDAO();
            UsuarioDAO usuarioDao = new UsuarioDAO();

@@ -39,4 +39,5 @@ public class PruebaActividadDAO {
         assertTrue("Registro de actividad exitoso es: ",registroExitoso);
         
     }
+    
 }

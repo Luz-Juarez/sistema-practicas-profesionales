@@ -24,14 +24,14 @@ public class PruebaProyectoDAO {
     
     @Before
     public void recursoInsertarOrganizacionVinculada()throws OperacionesDeDaoExcepcion{
-        OrganizacionDAO organizaciondao = new OrganizacionDAO();
+        OrganizacionDAO organizacionDao = new OrganizacionDAO();
         organizacion.setIdOrganizacion(2);
         organizacion.setNombre("Vought");
         organizacion.setDireccion("Torre Vought en Nueva York");
         organizacion.setSector("Privado");
         organizacion.setEsActivo(true);
         
-        organizaciondao.registrarOrganizacion(organizacion);
+        organizacionDao.registrarOrganizacion(organizacion);
         
     }
     
@@ -39,7 +39,7 @@ public class PruebaProyectoDAO {
     public void pruebaRegistroProyectoDAOExitosa()throws OperacionesDeDaoExcepcion{
         
         Proyecto proyecto = new Proyecto();
-        ProyectoDAO proyectodao = new ProyectoDAO();
+        ProyectoDAO proyectoDao = new ProyectoDAO();
         
         proyecto.setNombre("Proyecto Odessa");
         proyecto.setDescripcion("Crear un superhéroe definitivo");
@@ -48,13 +48,9 @@ public class PruebaProyectoDAO {
         proyecto.setOrganizacion(organizacion);
         proyecto.setEsActivo(true);
         
-        boolean registroExitoso = proyectodao.registrarProyecto(proyecto);
+        boolean registroExitoso = proyectoDao.registrarProyecto(proyecto);
         assertTrue(registroExitoso);
         
     }
     
-    @After
-    public void recursoEliminarOrganizacionVinculada(){
-        
-    }
 }

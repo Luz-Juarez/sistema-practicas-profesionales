@@ -8,10 +8,8 @@ import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import spp.logicadenegocio.clasesdao.CoordinadorDAO;
 import spp.logicadenegocio.clasesdao.ProfesorDAO;
 import spp.logicadenegocio.clasesdao.UsuarioDAO;
-import spp.logicadenegocio.clasesdto.Coordinador;
 import spp.logicadenegocio.clasesdto.Profesor;
 import spp.logicadenegocio.clasesdto.Usuario;
 import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
@@ -23,17 +21,17 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
 public class PruebaProfesorDAO {
     
     Usuario usuario = new Usuario();
+    int idUsuario;
     
     @Before
     public void recursoInsertarUsuario()throws OperacionesDeDaoExcepcion{
         
-        UsuarioDAO usuariodao = new UsuarioDAO();
-        usuario.setIdUsuario(3);
+        UsuarioDAO usuarioDao = new UsuarioDAO();
         usuario.setNombre("Lizbeth");
         usuario.setApellidos("Hernandez Gonzalez");
         usuario.setContraseña("password");
         usuario.setEsActivo(true);
-        usuariodao.registrarUsuario(usuario);
+        idUsuario = usuarioDao.registrarUsuario(usuario);
         
     }
     
@@ -53,6 +51,16 @@ public class PruebaProfesorDAO {
     
     @After
     public void eliminarUsuario()throws OperacionesDeDaoExcepcion{
+        
+        if(idUsuario < 0){
+            
+           ProfesorDAO profesorDao = new ProfesorDAO();
+           UsuarioDAO usuarioDao = new UsuarioDAO();
+           profesorDao.eliminarProfesor("p2402");
+           usuarioDao.eliminarUsuario(idUsuario);
+           System.out.println("Usuario y profesor de prueba eliminados");
+           
+        }
         
     }
     
