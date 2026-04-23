@@ -48,20 +48,4 @@ public class PruebaProfesorDAO {
         assertTrue(registroExitoso);
         
     }
-    
-    @After
-    public void eliminarUsuario()throws OperacionesDeDaoExcepcion{
-        
-        if(idUsuario < 0){
-            
-           ProfesorDAO profesorDao = new ProfesorDAO();
-           UsuarioDAO usuarioDao = new UsuarioDAO();
-           profesorDao.eliminarProfesor("p2402");
-           usuarioDao.eliminarUsuario(idUsuario);
-           System.out.println("Usuario y profesor de prueba eliminados");
-           
-        }
-        
-    }
-    
 }

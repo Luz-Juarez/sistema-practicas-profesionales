@@ -4,6 +4,8 @@
  */
 package spp.logicadenegocio.clasesdto;
 
+import java.util.Objects;
+
 /**
  *
  * @author Luz Fernanda H J
@@ -30,5 +32,28 @@ public class Profesor extends Usuario{
     public void setNumeroDePersonal(String numeroDePersonal) {
         this.numeroDePersonal = numeroDePersonal;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.numeroDePersonal);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Profesor other = (Profesor) obj;
+        return Objects.equals(this.numeroDePersonal, other.numeroDePersonal);
+    }
+    
     
 }
