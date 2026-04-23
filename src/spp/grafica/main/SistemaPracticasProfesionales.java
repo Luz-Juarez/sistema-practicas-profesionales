@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package spp.grafica;
+package spp.grafica.main;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
