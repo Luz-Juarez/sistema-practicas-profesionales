@@ -15,7 +15,7 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  */
 public class ValidacionOrganizacion {
     
-    public void insertarOrganizacion(Organizacion organizacion){
+    public String insertarOrganizacion(Organizacion organizacion){
         
         OrganizacionDAO organizacionDao = new OrganizacionDAO();
         organizacion.setEsActivo(true);
@@ -23,11 +23,11 @@ public class ValidacionOrganizacion {
         try{
             
             organizacionDao.registrarOrganizacion(organizacion);
-            JOptionPane.showMessageDialog(null, "Organización registrado correctamente");
+            return "Organización registrado correctamente";
             
         }catch(OperacionesDeDaoExcepcion e){
             
-            System.out.println(e.getMessage());
+            return "No se pudo registrar. Intente más tarde.";
         }
         
     }

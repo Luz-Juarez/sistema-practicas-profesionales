@@ -17,7 +17,7 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  */
 public class ValidacionPracticante {
     
-    public void insertarPracticante(Practicante practicante){
+    public String insertarPracticante(Practicante practicante){
         
         Usuario usuario = new Usuario();
         
@@ -35,13 +35,13 @@ public class ValidacionPracticante {
             
             practicante.setIdUsuario(idUsuario);
             practicanteDao.registrarPracticante(practicante);
-             JOptionPane.showMessageDialog(null, "Practicante registrado correctamente");
+            return "Practicante registrado correctamente";
             
         }catch(OperacionesDeDaoExcepcion e){
             
-            System.out.println("insertar da error en : "+ e);
+            return "No se pudo registrar. Intente más tarde.";   
             
         }
+       
     }
-    
 }

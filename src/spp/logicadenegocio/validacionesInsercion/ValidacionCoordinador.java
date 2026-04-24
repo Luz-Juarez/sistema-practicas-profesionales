@@ -16,7 +16,7 @@ import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
  * @author Luz Fernanda H J
  */
 public class ValidacionCoordinador {
-    public void insertarCoordinador(Coordinador coordinador){
+    public String insertarCoordinador(Coordinador coordinador){
         
         Usuario usuario = new Usuario();
        
@@ -34,12 +34,11 @@ public class ValidacionCoordinador {
             
             coordinador.setIdUsuario(idUsuario);
             coordinadorDao.registrarCoordinador(coordinador);
-            
-            JOptionPane.showMessageDialog(null, "Coordinador registrado correctamente");
+            return "Coordinador registrado correctamente";
             
         }catch(OperacionesDeDaoExcepcion e){
             
-            System.out.println("insertar da error en " + e);
+            return "No se pudo registrar. Intente más tarde.";
             
         }
     }
