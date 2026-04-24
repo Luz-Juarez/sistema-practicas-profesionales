@@ -31,6 +31,7 @@ public class ValidacionProfesor {
         try{
             
             int idUsuario = usuarioDao.registrarUsuario(usuario);
+            
             profesor.setIdUsuario(idUsuario);
             profesorDao.registrarProfesor(profesor);
             

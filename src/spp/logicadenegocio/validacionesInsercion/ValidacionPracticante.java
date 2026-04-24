@@ -27,12 +27,18 @@ public class ValidacionPracticante {
         
         UsuarioDAO usuarioDao = new UsuarioDAO();
         PracticanteDAO practicanteDao = new PracticanteDAO();
+        
         try{
+            
             int idUsuario = usuarioDao.registrarUsuario(usuario);
+            
             practicante.setIdUsuario(idUsuario);
             practicanteDao.registrarPracticante(practicante);
+            
         }catch(OperacionesDeDaoExcepcion e){
+            
             System.out.println("insertar da error en : "+ e);
+            
         }
     }
     

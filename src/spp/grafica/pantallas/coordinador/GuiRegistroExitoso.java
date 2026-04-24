@@ -86,9 +86,6 @@ public class GuiRegistroExitoso extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonAceptarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         
         try {

@@ -12,10 +12,7 @@ import spp.logicadenegocio.validacionesInsercion.ValidacionProfesor;
  * @author gomes
  */
 public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger
-    (GuiFormularioRegistroProfesor.class.getName());
-
+   
     public GuiFormularioRegistroProfesor() {
         initComponents();
     }
@@ -135,6 +132,7 @@ public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         
         Profesor profesor = new Profesor();
+        
         String nombre = ingresaNombre.getText();
         String apellidos = ingresaApellidos.getText();
         String noPersonal = ingresaNoPersonal.getText();
@@ -153,20 +151,14 @@ public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void ingresaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresaNombreActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_ingresaNombreActionPerformed
 
     private void ingresaNoPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresaNoPersonalActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_ingresaNoPersonalActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(() -> new GuiFormularioRegistroProfesor().setVisible(true));

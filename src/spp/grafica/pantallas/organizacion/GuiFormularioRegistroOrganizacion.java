@@ -13,10 +13,6 @@ import spp.logicadenegocio.validacionesInsercion.ValidacionOrganizacion;
  * @author gomes
  */
 public class GuiFormularioRegistroOrganizacion extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger
-    (GuiFormularioRegistroOrganizacion.class.getName());
-
 
     public GuiFormularioRegistroOrganizacion() {
         initComponents();
@@ -138,20 +134,18 @@ public class GuiFormularioRegistroOrganizacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresaNombreActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_ingresaNombreActionPerformed
 
     private void ingresaDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresaDireccionActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_ingresaDireccionActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         
         Organizacion organizacion = new Organizacion();
+        
         String nombre = ingresaNombre.getText();
         String direccion = ingresaDireccion.getText();
       
@@ -178,9 +172,6 @@ public class GuiFormularioRegistroOrganizacion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(() -> new GuiFormularioRegistroOrganizacion().setVisible(true));
