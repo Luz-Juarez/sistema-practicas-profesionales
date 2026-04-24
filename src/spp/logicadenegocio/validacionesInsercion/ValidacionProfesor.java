@@ -29,9 +29,11 @@ public class ValidacionProfesor {
         ProfesorDAO profesorDao = new ProfesorDAO();
         
         try{
+            
             int idUsuario = usuarioDao.registrarUsuario(usuario);
             profesor.setIdUsuario(idUsuario);
             profesorDao.registrarProfesor(profesor);
+            
         }catch(OperacionesDeDaoExcepcion e){
             
             System.out.println(e.getMessage());
