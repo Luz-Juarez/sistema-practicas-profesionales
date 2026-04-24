@@ -166,7 +166,17 @@ public class GuiFormularioRegistroOrganizacion extends javax.swing.JFrame {
         }
         
         ValidacionOrganizacion validacion = new ValidacionOrganizacion();
-        validacion.insertarOrganizacion(organizacion);
+        String respuesta = validacion.insertarOrganizacion(organizacion);
+        
+        if (respuesta.equals("Organización registrado correctamente")) {
+        
+            JOptionPane.showMessageDialog(this, respuesta,"Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            
+        } else {
+        
+            JOptionPane.showMessageDialog(this, respuesta,"Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
         
     }//GEN-LAST:event_botonRegistrarActionPerformed
 

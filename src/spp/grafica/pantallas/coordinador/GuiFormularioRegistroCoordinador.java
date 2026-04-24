@@ -4,6 +4,7 @@
  */
 package spp.grafica.pantallas.coordinador;
 
+import javax.swing.JOptionPane;
 import spp.logicadenegocio.clasesdto.Coordinador;
 import spp.logicadenegocio.validacionesInsercion.ValidacionCoordinador;
 
@@ -158,7 +159,17 @@ public class GuiFormularioRegistroCoordinador extends javax.swing.JFrame {
         }
         
         ValidacionCoordinador validacion = new ValidacionCoordinador();
-        validacion.insertarCoordinador(coordinador);
+        String respuesta = validacion.insertarCoordinador(coordinador);
+        
+        if (respuesta.equals("Coordinador registrado correctamente")) {
+        
+            JOptionPane.showMessageDialog(this, respuesta,"Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            
+        } else {
+        
+            JOptionPane.showMessageDialog(this, respuesta,"Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
         
     }//GEN-LAST:event_botonRegistrarActionPerformed
 

@@ -4,6 +4,7 @@
  */
 package spp.grafica.pantallas.profesor;
 
+import javax.swing.JOptionPane;
 import spp.logicadenegocio.clasesdto.Profesor;
 import spp.logicadenegocio.validacionesInsercion.ValidacionProfesor;
 
@@ -147,7 +148,17 @@ public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
         } 
       
         ValidacionProfesor validacion = new ValidacionProfesor();
-        validacion.insertarProfesor(profesor);
+        String respuesta = validacion.insertarProfesor(profesor);
+        
+        if (respuesta.equals("Profesor registrado correctamente")) {
+        
+            JOptionPane.showMessageDialog(this, respuesta,"Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            
+        } else {
+        
+            JOptionPane.showMessageDialog(this, respuesta, "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
         
     }//GEN-LAST:event_botonRegistrarActionPerformed
 

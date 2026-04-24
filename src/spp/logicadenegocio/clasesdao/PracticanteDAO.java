@@ -44,7 +44,7 @@ public class PracticanteDAO extends UsuarioDAO implements IPracticanteDAO{
             registroExitoso = true;
 
         } catch (SQLException e) {
-            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos practicante",e);
+            throw new OperacionesDeDaoExcepcion("No se puede conectar a la base de datos",e);
         }
     return registroExitoso;
     

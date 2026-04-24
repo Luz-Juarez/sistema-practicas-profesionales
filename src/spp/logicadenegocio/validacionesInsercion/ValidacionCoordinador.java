@@ -4,7 +4,6 @@
  */
 package spp.logicadenegocio.validacionesInsercion;
 
-import javax.swing.JOptionPane;
 import spp.logicadenegocio.clasesdao.CoordinadorDAO;
 import spp.logicadenegocio.clasesdao.UsuarioDAO;
 import spp.logicadenegocio.clasesdto.Coordinador;
@@ -37,7 +36,7 @@ public class ValidacionCoordinador {
             return "Coordinador registrado correctamente";
             
         }catch(OperacionesDeDaoExcepcion e){
-            
+           
             return "No se pudo registrar. Intente más tarde.";
             
         }

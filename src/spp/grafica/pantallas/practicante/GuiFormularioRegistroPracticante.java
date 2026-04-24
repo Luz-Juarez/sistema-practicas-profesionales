@@ -240,7 +240,7 @@ public class GuiFormularioRegistroPracticante extends javax.swing.JFrame {
             
         }catch(DateTimeParseException  e){
             
-            System.out.println("fecha da error en : "+ e);
+           JOptionPane.showMessageDialog(this, "Ingresa correctamente la fecha de nacimiento");
             
         }
        
@@ -280,7 +280,17 @@ public class GuiFormularioRegistroPracticante extends javax.swing.JFrame {
         } 
         
         ValidacionPracticante validacion = new ValidacionPracticante();
-        validacion.insertarPracticante(practicante);
+        String respuesta = validacion.insertarPracticante(practicante);
+        
+        if (respuesta.equals("Practicante registrado correctamente")) {
+        
+            JOptionPane.showMessageDialog(this, respuesta, "Registro Exitoso",JOptionPane.INFORMATION_MESSAGE);
+            
+        } else {
+        
+            JOptionPane.showMessageDialog(this, respuesta, "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
         
     }//GEN-LAST:event_botonRegistrarActionPerformed
 

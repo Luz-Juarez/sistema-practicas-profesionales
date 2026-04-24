@@ -4,7 +4,6 @@
  */
 package spp.logicadenegocio.validacionesInsercion;
 
-import javax.swing.JOptionPane;
 import spp.logicadenegocio.clasesdao.OrganizacionDAO;
 import spp.logicadenegocio.clasesdto.Organizacion;
 import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
