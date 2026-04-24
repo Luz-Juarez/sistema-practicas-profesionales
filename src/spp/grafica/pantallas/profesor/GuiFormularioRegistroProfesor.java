@@ -153,6 +153,7 @@ public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
       
         ValidacionProfesor validacion = new ValidacionProfesor();
         validacion.insertarProfesor(profesor);
+        
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed

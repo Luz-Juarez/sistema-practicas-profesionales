@@ -35,6 +35,7 @@ public class ValidacionProfesor {
         }catch(OperacionesDeDaoExcepcion e){
             
             System.out.println(e.getMessage());
+            
         }
         
     }
