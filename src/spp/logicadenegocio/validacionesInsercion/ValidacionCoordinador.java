@@ -4,6 +4,7 @@
  */
 package spp.logicadenegocio.validacionesInsercion;
 
+import spp.grafica.pantallas.coordinador.GuiRegistroExitoso;
 import spp.logicadenegocio.clasesdao.CoordinadorDAO;
 import spp.logicadenegocio.clasesdao.UsuarioDAO;
 import spp.logicadenegocio.clasesdto.Coordinador;
@@ -29,6 +30,8 @@ public class ValidacionCoordinador {
             int idUsuario = usuarioDao.registrarUsuario(usuario);
             coordinador.setIdUsuario(idUsuario);
             coordinadorDao.registrarCoordinador(coordinador);
+            GuiRegistroExitoso registroExitoso = new GuiRegistroExitoso();
+            registroExitoso.setVisible(true);
         }catch(OperacionesDeDaoExcepcion e){
             System.out.println("insertar da error en " + e);
         }
