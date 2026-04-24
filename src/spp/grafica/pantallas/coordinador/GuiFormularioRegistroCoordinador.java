@@ -15,6 +15,7 @@ public class GuiFormularioRegistroCoordinador extends javax.swing.JFrame {
     
     public GuiFormularioRegistroCoordinador() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -91,7 +92,7 @@ public class GuiFormularioRegistroCoordinador extends javax.swing.JFrame {
                 .addComponent(botonRegistrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonCancelar)
-                .addGap(128, 128, 128))
+                .addGap(116, 116, 116))
         );
         formularioCoordinadorLayout.setVerticalGroup(
             formularioCoordinadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,9 +141,6 @@ public class GuiFormularioRegistroCoordinador extends javax.swing.JFrame {
     private void ingresaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresaNombreActionPerformed
     }//GEN-LAST:event_ingresaNombreActionPerformed
 
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-    }//GEN-LAST:event_botonCancelarActionPerformed
-
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         
         Coordinador coordinador = new Coordinador();
@@ -164,11 +162,11 @@ public class GuiFormularioRegistroCoordinador extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(() -> new GuiFormularioRegistroCoordinador().setVisible(true));
-        
-    }
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;

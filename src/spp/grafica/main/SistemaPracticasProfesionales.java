@@ -4,6 +4,8 @@
  */
 package spp.grafica.main;
 
+import spp.grafica.pantallas.MenuPrincipal;
+
 
 /**
  *
@@ -12,6 +14,8 @@ package spp.grafica.main;
 public class SistemaPracticasProfesionales {
 
     public static void main(String[] args) {
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
     }
     
 }

@@ -20,6 +20,7 @@ public class GuiFormularioRegistroPracticante extends javax.swing.JFrame {
     
     public GuiFormularioRegistroPracticante() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -99,6 +100,11 @@ public class GuiFormularioRegistroPracticante extends javax.swing.JFrame {
         });
 
         botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -199,10 +205,10 @@ public class GuiFormularioRegistroPracticante extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addComponent(formularioPracticante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -278,11 +284,10 @@ public class GuiFormularioRegistroPracticante extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(() -> new GuiFormularioRegistroPracticante().setVisible(true));
-        
-    }
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;

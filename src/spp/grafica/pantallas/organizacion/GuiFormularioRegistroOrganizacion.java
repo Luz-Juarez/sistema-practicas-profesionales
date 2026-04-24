@@ -16,6 +16,7 @@ public class GuiFormularioRegistroOrganizacion extends javax.swing.JFrame {
 
     public GuiFormularioRegistroOrganizacion() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -75,10 +76,10 @@ public class GuiFormularioRegistroOrganizacion extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ingresaDireccion)
                                     .addComponent(opcionesSector, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(botonCancelar)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(73, 73, 73))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(textoNombre)
                         .addGap(18, 18, 18)
@@ -139,9 +140,6 @@ public class GuiFormularioRegistroOrganizacion extends javax.swing.JFrame {
     private void ingresaDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresaDireccionActionPerformed
     }//GEN-LAST:event_ingresaDireccionActionPerformed
 
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-    }//GEN-LAST:event_botonCancelarActionPerformed
-
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         
         Organizacion organizacion = new Organizacion();
@@ -172,11 +170,10 @@ public class GuiFormularioRegistroOrganizacion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
-    public static void main(String args[]) {
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
-        java.awt.EventQueue.invokeLater(() -> new GuiFormularioRegistroOrganizacion().setVisible(true));
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;

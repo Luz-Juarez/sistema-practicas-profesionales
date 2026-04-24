@@ -81,7 +81,7 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                                   <Component id="botonCancelar" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -156,14 +156,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegistrarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="botonCancelar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCancelarActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="tituloFormulario">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -176,6 +168,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre del Profesor: "/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonCancelar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCancelarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

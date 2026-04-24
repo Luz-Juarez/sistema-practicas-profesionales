@@ -15,6 +15,7 @@ public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
    
     public GuiFormularioRegistroProfesor() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,9 +30,9 @@ public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         ingresaNoPersonal = new javax.swing.JTextField();
         botonRegistrar = new javax.swing.JButton();
-        botonCancelar = new javax.swing.JButton();
         tituloFormulario = new javax.swing.JLabel();
         textoNombre = new javax.swing.JLabel();
+        botonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,13 +49,13 @@ public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
         botonRegistrar.setText("Registrar");
         botonRegistrar.addActionListener(this::botonRegistrarActionPerformed);
 
-        botonCancelar.setText("Cancelar");
-        botonCancelar.addActionListener(this::botonCancelarActionPerformed);
-
         tituloFormulario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         tituloFormulario.setText("Registrar Profesor");
 
         textoNombre.setText("Nombre del Profesor: ");
+
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(this::botonCancelarActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,7 +79,7 @@ public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
                                     .addComponent(ingresaApellidos)
                                     .addComponent(ingresaNoPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(95, 95, 95)
+                                .addGap(116, 116, 116)
                                 .addComponent(botonCancelar))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(182, 182, 182)
@@ -150,20 +151,16 @@ public class GuiFormularioRegistroProfesor extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-    }//GEN-LAST:event_botonCancelarActionPerformed
-
     private void ingresaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresaNombreActionPerformed
     }//GEN-LAST:event_ingresaNombreActionPerformed
 
     private void ingresaNoPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresaNoPersonalActionPerformed
     }//GEN-LAST:event_ingresaNoPersonalActionPerformed
 
-    public static void main(String args[]) {
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
-        java.awt.EventQueue.invokeLater(() -> new GuiFormularioRegistroProfesor().setVisible(true));
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;

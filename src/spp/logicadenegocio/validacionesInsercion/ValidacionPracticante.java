@@ -4,6 +4,7 @@
  */
 package spp.logicadenegocio.validacionesInsercion;
 
+import javax.swing.JOptionPane;
 import spp.logicadenegocio.clasesdao.PracticanteDAO;
 import spp.logicadenegocio.clasesdao.UsuarioDAO;
 import spp.logicadenegocio.clasesdto.Practicante;
@@ -34,6 +35,7 @@ public class ValidacionPracticante {
             
             practicante.setIdUsuario(idUsuario);
             practicanteDao.registrarPracticante(practicante);
+             JOptionPane.showMessageDialog(null, "Practicante registrado correctamente");
             
         }catch(OperacionesDeDaoExcepcion e){
             

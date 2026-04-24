@@ -4,6 +4,7 @@
  */
 package spp.logicadenegocio.validacionesInsercion;
 
+import javax.swing.JOptionPane;
 import spp.logicadenegocio.clasesdao.OrganizacionDAO;
 import spp.logicadenegocio.clasesdto.Organizacion;
 import spp.utilerias.excepciones.OperacionesDeDaoExcepcion;
@@ -22,6 +23,7 @@ public class ValidacionOrganizacion {
         try{
             
             organizacionDao.registrarOrganizacion(organizacion);
+            JOptionPane.showMessageDialog(null, "Organización registrado correctamente");
             
         }catch(OperacionesDeDaoExcepcion e){
             

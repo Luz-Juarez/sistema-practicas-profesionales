@@ -4,7 +4,7 @@
  */
 package spp.logicadenegocio.validacionesInsercion;
 
-import spp.grafica.pantallas.coordinador.GuiRegistroExitoso;
+import javax.swing.JOptionPane;
 import spp.logicadenegocio.clasesdao.CoordinadorDAO;
 import spp.logicadenegocio.clasesdao.UsuarioDAO;
 import spp.logicadenegocio.clasesdto.Coordinador;
@@ -35,8 +35,7 @@ public class ValidacionCoordinador {
             coordinador.setIdUsuario(idUsuario);
             coordinadorDao.registrarCoordinador(coordinador);
             
-            GuiRegistroExitoso registroExitoso = new GuiRegistroExitoso();
-            registroExitoso.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Coordinador registrado correctamente");
             
         }catch(OperacionesDeDaoExcepcion e){
             
